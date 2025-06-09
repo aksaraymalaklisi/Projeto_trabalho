@@ -33,7 +33,7 @@ export default async function handler(req, res) {
     // Verifica se a chave webhook é de teste ou produção
     const webhookSecret = 
       process.env.STRIPE_WEBHOOK_SECRET || 
-      (process.env.STRIPE_SECRET_KEY.startsWith('sk_test_') 
+      (process.env.STRIPE_SECRET_KEY.startsWith('sk_test_12345') 
         ? process.env.STRIPE_WEBHOOK_SECRET_TEST 
         : process.env.STRIPE_WEBHOOK_SECRET_LIVE);
 
