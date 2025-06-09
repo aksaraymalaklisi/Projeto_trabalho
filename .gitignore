@@ -24,3 +24,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 #next-env.d.ts
+# Arquivos de ambiente
+.env
+.env*.local
+
+# Dependências e builds (já existentes no seu .gitignore)
+/node_modules
+/.next
+/out
+/build
