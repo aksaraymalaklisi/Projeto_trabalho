@@ -3,7 +3,7 @@ import { loadStripe } from '@stripe/stripe-js';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
-export const handleStripePayment = async (pkgPrice: number) => {
+export const handleStripe = async (pkgPrice: number) => {
   const stripe = await stripePromise;
 
   const response = await fetch('/api/create-checkout-session', {
