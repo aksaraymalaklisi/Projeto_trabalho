@@ -1,4 +1,3 @@
-
 import { handleStripePayment } from "@/lib/handleStripePayment";
 import { loadStripe } from '@stripe/stripe-js';
 
