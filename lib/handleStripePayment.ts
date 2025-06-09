@@ -27,18 +27,18 @@ export const handleStripeCheckout = async (pkgPrice: number) => {
       throw new Error(errorData.message || 'Erro na API');
     }
 
-    const { url, error } = await response.json();
+    const { sessionId, error } = await response.json();
 
     if (error) {
       throw new Error(error);
     }
 
-    if (!url) {
-      throw new Error('URL de checkout não recebida');
+    if (!sessionId) {
+      throw new Error('ID da sessão de checkout não recebido');
     }
 
     // Redireciona para o checkout do Stripe
-    const { error: redirectError } = await stripe.redirectToCheckout({ url });
+    const { error: redirectError } = await stripe.redirectToCheckout({ sessionId });
     
     if (redirectError) {
       throw new Error(redirectError.message);
