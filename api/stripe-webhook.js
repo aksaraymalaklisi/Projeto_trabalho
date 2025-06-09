@@ -103,4 +103,7 @@ export default async function handler(req, res) {
 
   // Responde a outros eventos Stripe (não tratados)
   res.status(200).json({ received: true });
-}ss
+// Exemplo para verificar programaticamente
+if (process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY.startsWith('pk_test_')) {
+  console.log('✅ Modo teste ativo');
+}}
