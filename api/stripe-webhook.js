@@ -1,10 +1,10 @@
-// pages/api/stripe-webhook.js
 import { buffer } from 'micro';
 import Stripe from 'stripe';
 import { Resend } from 'resend';
 
+// Configuração do Stripe (modo teste/produção automático baseado na chave)
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
-  apiVersion: '2025-05-28.basil',
+  apiVersion: '2025-05-28.basil', // Mantenha a versão mais recente
 });
 
 export const config = {
@@ -25,23 +25,40 @@ export default async function handler(req, res) {
     const sig = req.headers['stripe-signature'];
     const buf = await buffer(req);
 
-    event = stripe.webhooks.constructEvent(buf, sig, process.env.STRIPE_WEBHOOK_SECRET);
+    // Verifica se a chave webhook é de teste ou produção
+    const webhookSecret = 
+      process.env.STRIPE_WEBHOOK_SECRET || 
+      (process.env.STRIPE_SECRET_KEY.startsWith('sk_test_') 
+        ? process.env.STRIPE_WEBHOOK_SECRET_TEST 
+        : process.env.STRIPE_WEBHOOK_SECRET_LIVE);
+
+    if (!webhookSecret) {
+      throw new Error('Webhook secret não configurado');
+    }
+
+    event = stripe.webhooks.constructEvent(buf, sig, webhookSecret);
   } catch (err) {
-    console.error('Webhook signature verification failed.', err.message);
+    console.error('❌ Webhook error:', err.message);
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
 
-  // Só processa evento de sucesso de pagamento
+  // Debug: Log do evento recebido (útil para teste)
+  console.log('🔔 Evento recebido:', event.type);
+
+  // Processa eventos de sucesso de pagamento
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
 
-    // Você pode salvar os dados do formulário do cliente nos campos "metadata" da sessão Stripe
-    // Exemplo: session.metadata.nome, session.metadata.email, etc.
-    // Aqui, só usamos o email e nome se estiverem lá:
+    // Extrai dados do cliente
     const email = session.customer_details?.email || session.customer_email;
     const name = session.metadata?.name || 'Cliente';
 
-    // Monta o corpo do e-mail
+    if (!email) {
+      console.warn('⚠️ E-mail não encontrado na sessão:', session.id);
+      return res.status(200).json({ received: true }); // Stripe espera 200 mesmo em erros
+    }
+
+    // Template do e-mail
     const html = `
       <p>Olá <strong>${name}</strong>!</p>
       <p>Seu pagamento foi confirmado com sucesso!</p>
@@ -52,6 +69,7 @@ export default async function handler(req, res) {
     `;
 
     try {
+      // Envia e-mail para o cliente
       await resend.emails.send({
         from: 'onboarding@resend.dev',
         to: email,
@@ -59,22 +77,30 @@ export default async function handler(req, res) {
         html,
       });
 
-      // (Opcional) envie para você mesmo também:
-      await resend.emails.send({
-        from: 'onboarding@resend.dev',
-        to: 'marciovinicius1021@gmail.com',
-        subject: 'Novo pedido confirmado',
-        html: `<p>Novo pedido recebido de: <b>${name}</b> - <a href="mailto:${email}">${email}</a></p>`
-      });
+      // Envia notificação para o administrador (opcional)
+      if (process.env.ADMIN_EMAIL) {
+        await resend.emails.send({
+          from: 'onboarding@resend.dev',
+          to: process.env.ADMIN_EMAIL,
+          subject: `🎉 Novo pedido de ${name}`,
+          html: `<p>Novo pedido confirmado:</p>
+                 <ul>
+                   <li>Cliente: ${name}</li>
+                   <li>E-mail: <a href="mailto:${email}">${email}</a></li>
+                   <li>ID Sessão: ${session.id}</li>
+                 </ul>`
+        });
+      }
 
+      console.log('✉️ E-mails enviados com sucesso para:', email);
       return res.status(200).json({ received: true });
     } catch (e) {
-      console.error('Erro ao enviar e-mail:', e);
-      // Retorna OK para outros eventos Stripe
-      res.status(200).json({ received: true });
+      console.error('❌ Erro ao enviar e-mail:', e);
+      // Não falha o webhook para evitar retentativas desnecessárias
+      return res.status(200).json({ received: true });
     }
   }
 
-  // Retorna OK para outros eventos Stripe que não são 'checkout.session.completed'
+  // Responde a outros eventos Stripe (não tratados)
   res.status(200).json({ received: true });
-}
+}ss
