@@ -1,4 +1,3 @@
-import { handleStripePayment } from "@/lib/handleStripePayment";
 import { loadStripe } from '@stripe/stripe-js';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
@@ -25,3 +24,4 @@ export const handleStripe = async (pkgPrice: number) => {
     console.error('Erro ao criar sessão de checkout', data.error);
   }
 };
+
