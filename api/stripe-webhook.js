@@ -3,11 +3,14 @@ import { buffer } from 'micro';
 import Stripe from 'stripe';
 import { Resend } from 'resend';
 
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
+  apiVersion: '2025-05-28.basil',
+});
+
 export const config = {
   api: { bodyParser: false },
 };
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, { apiVersion: "2023-10-16" });
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 export default async function handler(req, res) {
@@ -67,10 +70,11 @@ export default async function handler(req, res) {
       return res.status(200).json({ received: true });
     } catch (e) {
       console.error('Erro ao enviar e-mail:', e);
-      return res.status(500).json({ error: 'Erro ao enviar e-mail' });
+      // Retorna OK para outros eventos Stripe
+      res.status(200).json({ received: true });
     }
   }
 
-  // Retorna OK para outros eventos Stripe
+  // Retorna OK para outros eventos Stripe que não são 'checkout.session.completed'
   res.status(200).json({ received: true });
 }

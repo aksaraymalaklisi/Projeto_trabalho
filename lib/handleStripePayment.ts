@@ -23,6 +23,7 @@ export const handleStripe = async (pkgPrice: number) => {
   } else {
     console.error('Erro ao criar sessão de checkout', data.error);
   }
+  
 };
 
 
