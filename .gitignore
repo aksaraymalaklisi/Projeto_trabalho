@@ -16,9 +16,7 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# .gitignore
-.env
-node_modules/
+
 
 # vercel
 .vercel
