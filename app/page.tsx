@@ -408,7 +408,8 @@ function CheckoutPage({ package: pkg, onBack }: { package: any; onBack: () => vo
               </CardContent>
             </Card>
           </div>
-        </div>
+        </
+        div>
       </div>
     </div>
   )
