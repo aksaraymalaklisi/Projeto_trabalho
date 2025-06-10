@@ -5,6 +5,24 @@ import { Resend } from 'resend';
 // ======================
 // 1. CONFIGURAÇÃO INICIAL
 // ======================
+// ... (imports e configurações anteriores)
+
+// Função para obter o segredo do webhook correto
+function getWebhookSecret() {
+  // Se a chave secreta começa com 'sk_test_', use o segredo de teste
+  if (process.env.STRIPE_SECRET_KEY.startsWith('sk_test_')) {
+    if (!process.env.STRIPE_WEBHOOK_SECRET_TEST) {
+      throw new Error('STRIPE_WEBHOOK_SECRET_TEST não configurado');
+    }
+    return process.env.STRIPE_WEBHOOK_SECRET_TEST;
+  }
+  // Senão, use o segredo de produção
+  if (!process.env.STRIPE_WEBHOOK_SECRET_LIVE) {
+    throw new Error('STRIPE_WEBHOOK_SECRET_LIVE não configurado');
+  }
+  return process.env.STRIPE_WEBHOOK_SECRET_LIVE;
+}
+
 
 // Validação das variáveis de ambiente essenciais
 if (!process.env.STRIPE_SECRET_KEY) {
@@ -149,4 +167,79 @@ export default async function handler(req, res) {
       message: err.message 
     });
   }
-}
+}import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+
+export const handleStripeCheckout = async (pkgPrice) => {
+  try {
+    const stripe = await stripePromise;
+    
+    if (!stripe) {
+      throw new Error('Falha ao carregar o Stripe');
+    }
+
+    // Verificar se estamos em modo de teste
+    const isTestMode = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY?.startsWith('pk_test_');
+    
+    if (isTestMode) {
+      console.log('🧪 Modo de teste ativo - Use cartões de teste do Stripe');
+    }
+
+    const response = await fetch('/api/create-checkout-session', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        amount: Math.round(pkgPrice * 100), // Garante que é inteiro (centavos)
+        currency: 'eur',
+        mode: 'payment',
+        test_mode: isTestMode, // Informar se é teste
+      }),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Erro na API');
+    }
+
+    const { sessionId, error } = await response.json();
+
+    if (error) {
+      throw new Error(error);
+    }
+
+    if (!sessionId) {
+      throw new Error('ID da sessão de checkout não recebido');
+    }
+
+    // Redireciona para o checkout do Stripe
+    const { error: redirectError } = await stripe.redirectToCheckout({ sessionId });
+    
+    if (redirectError) {
+      throw new Error(redirectError.message);
+    }
+
+  } catch (error) {
+    console.error('Erro no processo de checkout:', error);
+    
+    // Mostrar erro amigável para o usuário
+    if (error.message.includes('Falha ao carregar o Stripe')) {
+      alert('Erro ao carregar sistema de pagamento. Verifique sua conexão.');
+    } else {
+      alert(`Erro no checkout: ${error.message}`);
+    }
+    
+    throw error;
+  }
+};
+
+// Função auxiliar para cartões de teste
+export const getTestCards = () => {
+  return {
+    success: '4242424242424242',
+    declined: '4000000000000002',
+    requiresAuth: '4000002500003155',
+  };
+};

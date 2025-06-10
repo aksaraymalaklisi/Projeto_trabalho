@@ -1,16 +1,24 @@
-
-
 import { NextApiRequest, NextApiResponse } from 'next';
 import Stripe from 'stripe';
-
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2023-10-16',
-});
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
     try {
-      const { amount, currency } = req.body;
+      const { amount, currency, test_mode } = req.body;
+
+      // Escolhe a chave correta
+      const stripeSecretKey = test_mode
+        ? process.env.STRIPE_SECRET_KEY_TEST
+        : process.env.STRIPE_SECRET_KEY_LIVE;
+
+      if (!stripeSecretKey) {
+        throw new Error(`STRIPE_SECRET_KEY_${test_mode ? 'TEST' : 'LIVE'} não configurada`);
+      }
+
+      // Cria instância do Stripe com a chave correta
+      const stripe = new Stripe(stripeSecretKey, {
+        apiVersion: '2023-10-16',
+      });
 
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
@@ -31,8 +39,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         cancel_url: `${req.headers.origin}/cancel`,
       });
 
-      res.status(200).json({ url: session.url });
+      // Retorna sessionId para uso no frontend
+      res.status(200).json({ sessionId: session.id, url: session.url });
+
     } catch (err: any) {
+      console.error('Erro ao criar sessão de checkout:', err);
       res.status(500).json({ error: err.message });
     }
   } else {
