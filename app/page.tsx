@@ -820,12 +820,11 @@ function CheckoutPage({ package: pkg, onBack }: { package: any; onBack: () => vo
                   </ol>
                 </div>
                 <div className="text-center">
-                  <Button
-                    onClick={handleSubmit}
-                    className="w-full md:w-3/4 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold py-4 text-lg rounded-lg transition-all duration-300 hover:scale-105"
-                  >
-                    💳 PAGAR AGORA €{discountedPrice.toFixed(2).replace(".", ",")}
-                  </Button>
+                  <Button onClick={() => handleStripeCheckout(pkg.price)}
+  className="w-full md:w-3/4 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold py-4 text-lg rounded-lg transition-all duration-300 hover:scale-105"
+>
+  💳 PAGAR AGORA {pkg.price}
+</Button>
                 </div>
               </CardContent>
             </Card>
@@ -871,3 +870,33 @@ function CheckoutPage({ package: pkg, onBack }: { package: any; onBack: () => vo
     </div>
   )
 }
+
+// Função fora do componente
+const handleStripeCheckout = async (price: string) => {
+  try {
+    // Converte o preço de "€34,99" para 3499 (centavos)
+    const amount = parseFloat(price.replace("€", "").replace(",", ".")) * 100;
+    
+    const response = await fetch('/api/stripe-checkout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        amount,
+        currency: 'eur',
+        test_mode: process.env.NODE_ENV !== 'production' // ou false para produção
+      }),
+    });
+
+    const { sessionId, url } = await response.json();
+    
+    if (url) {
+      window.location.href = url;
+    } else {
+      console.error('URL de checkout não recebida');
+    }
+  } catch (err) {
+    console.error('Erro ao processar pagamento:', err);
+  }
+};
