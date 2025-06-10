@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { handleStripePayment } from "@/lib/handleStripePayment";
+import { handleStripeCheckout } from "@/lib/handleStripePayment";
 import { useState, useEffect } from "react"
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
@@ -182,6 +182,13 @@ const faqs = [
       "Absolutamente! Cada logo é criado exclusivamente para você. Você terá todos os direitos autorais e garantimos que nunca será usado por outra empresa.",
   },
 ]
+
+declare global {
+  interface Window {
+    googleTranslateElementInit?: () => void
+    google?: any
+  }
+}
 
 export default function LogoLandingPage() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0)
@@ -832,7 +839,7 @@ function CheckoutPage({ package: pkg, onBack }: { package: any; onBack: () => vo
               <CardContent className="space-y-4">
                 <div className="flex flex-col items-center gap-4">
                  <Button
-					onClick={() => handleStripePayment(pkg.price)}
+					onClick={() => handleStripeCheckout(pkg.price)}
 					className="w-full md:w-3/4 bg-green-600 ...">
 					Pague com Stripe (€{pkg.price})
 				</Button>

@@ -17,7 +17,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       // Cria instância do Stripe com a chave correta
       const stripe = new Stripe(stripeSecretKey, {
-        apiVersion: '2023-10-16',
+        apiVersion: '2025-05-28.basil',
       });
 
       const session = await stripe.checkout.sessions.create({
