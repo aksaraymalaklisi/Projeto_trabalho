@@ -8,30 +8,30 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   try {
-    const { amount, currency = 'brl', test_mode = false } = req.body;
+    const { amount, currency = 'brl' } = req.body;
 
-    // Validação básica
+    // 🛡️ Validação
     if (!amount || isNaN(amount)) {
-      throw new Error('Valor (amount) inválido ou não fornecido');
+      return res.status(400).json({ error: 'Valor (amount) inválido ou não fornecido' });
     }
 
-    const amountInCents = Math.round(amount * 100); // Converte para centavos
+    const amountInCents = Math.round(Number(amount) * 100); // Ex: 10.00 => 1000
 
-    // Seleciona a chave correta
-    const stripeSecretKey = test_mode
-      ? process.env.STRIPE_SECRET_KEY_TEST
-      : process.env.STRIPE_SECRET_KEY_LIVE;
+    // 🔑 Use apenas STRIPE_SECRET_KEY, que já deve estar correta no .env
+    const stripeSecretKey = process.env.STRIPE_SECRET_KEY;
 
     if (!stripeSecretKey) {
-      throw new Error(`STRIPE_SECRET_KEY_${test_mode ? 'TEST' : 'LIVE'} não configurada`);
+      throw new Error('Stripe secret key não configurada.');
     }
 
     const stripe = new Stripe(stripeSecretKey, {
-      apiVersion: '2024-04-10', // Versão estável mais recente
+      apiVersion: '2025-05-28.basil',
     });
 
+    // 🖥️ Base URL (para redirecionamento)
     const baseUrl = req.headers.origin || 'http://localhost:3000';
 
+    // 🧾 Criação da sessão de checkout
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       mode: 'payment',
@@ -51,6 +51,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       cancel_url: `${baseUrl}/cancel`,
     });
 
+    // ✅ Resposta: redirecionar via frontend
     return res.status(200).json({ sessionId: session.id, url: session.url });
 
   } catch (err: any) {
