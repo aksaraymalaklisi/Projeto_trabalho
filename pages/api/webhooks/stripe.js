@@ -19,4 +19,9 @@ export default async function handler(req, res) {
     console.log(`Webhook signature verification failed.`, err.message);
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
+  const paymentRequest = stripe.paymentRequest({
+  currency: 'brl',
+  country: 'BR',
+  requestPayerEmail: true,
+});
 }
