@@ -111,7 +111,7 @@ const packages = [
       "Tipografia profissional personalizada, para reforçar sua marca em postagens e materiais",
       "Mockups aplicados, com o logo pronto em camiseta, fachada, cartão e outros modelos realistas",
     ],
-    stripeUrl: "https://buy.stripe.com/00w28s02P6cFcad7Qn9Zm03",
+    stripeUrl: "https://buy.stripe.com/test_aFa3cx50L65M08QbjBeQM00",
     popular: false,
     color: "from-emerald-500 to-teal-500",
     icon: "👑",
@@ -871,3 +871,5 @@ function CheckoutPage({ package: pkg, onBack }: { package: any; onBack: () => vo
     </div>
   )
 }
+
+
