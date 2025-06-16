@@ -1,5 +1,6 @@
 "use client"
 
+import React from "react"
 import type React from "react"
 import { handleStripeCheckout } from "@/lib/handleStripePayment";
 import { useState, useEffect } from "react"
