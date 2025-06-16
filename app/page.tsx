@@ -3,6 +3,7 @@
 import type React from "react"
 import { handleStripeCheckout } from "@/lib/handleStripePayment";
 import { useState, useEffect } from "react"
+import LanguageSelector from "@/components/LanguageSelector";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -183,186 +184,7 @@ const faqs = [
   },
 ]
 
-declare global {
-  interface Window {
-    googleTranslateElementInit?: () => void
-    google?: any
-  }
-}
 
-export default function LogoLandingPage() {
-  const [currentTestimonial, setCurrentTestimonial] = useState(0)
-  const [openFaq, setOpenFaq] = useState<number | null>(null)
-  const [showCheckout, setShowCheckout] = useState(false)
-  const [selectedPackage, setSelectedPackage] = useState<any>(null)
-  const { scrollYProgress } = useScroll()
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"])
-
-  // Mapa de idiomas para caminhos de imagem de bandeiras
-  // ATENÇÃO: Você precisará adicionar as imagens das bandeiras no seu projeto, por exemplo, em /public/images/flags/
-  const flagMap: { [key: string]: string } = {
-    pt: "/images/flags/br.png", // Ou pt.png, dependendo da bandeira que deseja usar para Português
-    en: "/images/flags/us.png", // Bandeira dos EUA para Inglês
-    es: "/images/flags/es.png",
-    fr: "/images/flags/fr.png",
-    nl: "/images/flags/nl.png",
-    de: "/images/flags/de.png",
-    it: "/images/flags/it.png",
-  }
-
-  // Função para substituir o texto do idioma pela bandeira
-  const replaceLanguageTextWithFlags = () => {
-    console.log("replaceLanguageTextWithFlags: Tentando substituir texto por bandeiras.");
-    const googleTranslateDropdown = document.querySelector('.goog-te-combo');
-    if (googleTranslateDropdown) {
-      console.log("replaceLanguageTextWithFlags: Encontrou o dropdown .goog-te-combo");
-      const options = googleTranslateDropdown.querySelectorAll('option');
-      options.forEach(option => {
-        const langCode = option.value;
-        console.log(`replaceLanguageTextWithFlags: Processando opção com langCode: ${langCode}, text: ${option.text}`);
-        if (flagMap[langCode]) {
-          console.log(`replaceLanguageTextWithFlags: Bandeira encontrada para ${langCode}`);
-          // Criar um elemento div para envolver a imagem e o texto (se ainda quiser o texto pequeno)
-          const div = document.createElement('div');
-          div.style.display = 'flex';
-          div.style.alignItems = 'center';
-          div.style.gap = '5px';
-
-          const img = document.createElement('img');
-          img.src = flagMap[langCode];
-          img.alt = option.text;
-          img.style.width = '20px'; // Ajuste o tamanho da bandeira conforme necessário
-          img.style.height = 'auto';
-          img.style.verticalAlign = 'middle';
-          img.style.marginRight = '5px';
-
-          div.appendChild(img);
-
-          // Manter o texto do idioma ao lado da bandeira, se desejar
-          const textSpan = document.createElement('span');
-          textSpan.textContent = option.text;
-          div.appendChild(textSpan);
-          
-        }
-      });
-    }
-
-    const languageLinks = document.querySelectorAll('.goog-te-menu-item span');
-    if (languageLinks.length > 0) {
-        console.log(`replaceLanguageTextWithFlags: Encontrou ${languageLinks.length} links de idioma .goog-te-menu-item span`);
-    }
-    languageLinks.forEach(span => {
-        const langText = span.textContent;
-        const langCode = Object.keys(flagMap).find(key => 
-            (langText && (langText.toLowerCase().includes('portugu') && key === 'pt')) ||
-            (langText && (langText.toLowerCase().includes('english') && key === 'en')) ||
-            (langText && (langText.toLowerCase().includes('espanol') && key === 'es')) ||
-            (langText && (langText.toLowerCase().includes('francais') && key === 'fr')) ||
-            (langText && (langText.toLowerCase().includes('holand') && key === 'nl')) ||
-            (langText && (langText.toLowerCase().includes('deutsch') && key === 'de')) ||
-            (langText && (langText.toLowerCase().includes('italiano') && key === 'it'))
-        );
-
-        if (langCode && flagMap[langCode]) {
-            console.log(`replaceLanguageTextWithFlags: Substituindo link de idioma para ${langText} com bandeira.`);
-            const img = document.createElement('img');
-            img.src = flagMap[langCode];
-            img.alt = langText || '';
-            img.style.width = '20px'; // Ajuste o tamanho da bandeira conforme necessário
-            img.style.height = 'auto';
-            img.style.verticalAlign = 'middle';
-            img.style.marginRight = '5px';
-
-            span.innerHTML = ''; // Limpa o texto existente
-            span.appendChild(img);
-        } else {
-            console.log(`replaceLanguageTextWithFlags: Nenhuma bandeira encontrada para ${langText || 'undefined'}`);
-        }
-    });
-  }
-
-  useEffect(() => {
-    const addScript = () => {
-      if (document.getElementById("google-translate-script")) return
-      const script = document.createElement("script")
-      script.id = "google-translate-script"
-      script.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
-      document.body.appendChild(script)
-    }
-    window.googleTranslateElementInit = function () {
-      new window.google.translate.TranslateElement(
-        {
-          pageLanguage: "pt",
-          includedLanguages: "en,es,fr,nl,de,it,pt",
-          autoDisplay: true,
-          layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
-        },
-        "google-translate-ball"
-      )
-
-      // Função mais robusta para ocultar a barra e resetar estilos do body/html
-      const applyGlobalTranslateFix = () => {
-        const toolbar = document.querySelector('.goog-te-banner-frame');
-        if (toolbar instanceof HTMLElement) {
-          console.log("applyGlobalTranslateFix: Encontrado iframe da barra de tradução. Tentando ocultar.");
-          toolbar.style.setProperty('display', 'none', 'important');
-        } else {
-          console.log("applyGlobalTranslateFix: Iframe da barra de tradução não encontrado.");
-        }
-
-        const htmlElement = document.documentElement;
-        const bodyElement = document.body;
-
-        if (htmlElement) {
-          if (htmlElement.style.marginTop !== '0px' || htmlElement.style.paddingTop !== '0px' || htmlElement.style.top !== '0px') {
-            console.log("applyGlobalTranslateFix: Resetando estilos do html.");
-          }
-          htmlElement.style.setProperty('margin-top', '0', 'important');
-          htmlElement.style.setProperty('padding-top', '0', 'important');
-          htmlElement.style.setProperty('top', '0', 'important');
-        }
-        if (bodyElement) {
-          if (bodyElement.style.marginTop !== '0px' || bodyElement.style.paddingTop !== '0px' || bodyElement.style.top !== '0px') {
-            console.log("applyGlobalTranslateFix: Resetando estilos do body.");
-          }
-          bodyElement.style.setProperty('margin-top', '0', 'important');
-          bodyElement.style.setProperty('padding-top', '0', 'important');
-          bodyElement.style.setProperty('top', '0', 'important');
-        }
-      };
-
-      // MutationObserver para detectar mudanças e aplicar o fix
-      const observer = new MutationObserver((mutationsList, observerInstance) => {
-        console.log("MutationObserver: Detectando mudanças no DOM.");
-        let appliedFix = false;
-        for (let mutation of mutationsList) {
-          if (mutation.type === 'childList' ||
-              (mutation.type === 'attributes' && mutation.attributeName === 'style')) {
-            applyGlobalTranslateFix();
-            appliedFix = true;
-          }
-        }
-        const toolbar = document.querySelector('.goog-te-banner-frame');
-        if (toolbar && !appliedFix) {
-            console.log("MutationObserver: Barra de tradução presente, aplicando fix.");
-            applyGlobalTranslateFix();
-        }
-      });
-
-      observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['style'] });
-      observer.observe(document.documentElement, { attributes: true, attributeFilter: ['style'] });
-
-      // Chamar o fix periodicamente para garantir que a barra permaneça oculta
-      const intervalId = setInterval(applyGlobalTranslateFix, 200); // A cada 200ms
-
-      // Limpar o intervalo e o observador quando o componente for desmontado (boa prática)
-      return () => {
-        clearInterval(intervalId);
-        observer.disconnect();
-      };
-    }
-    addScript()
-  }, [])
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -422,12 +244,11 @@ export default function LogoLandingPage() {
       </div>
 
       <div className="absolute top-6 right-6 z-[1000]">
-  <div id="google-translate-ball" className="google-translate-ball flex items-center justify-center">
-    {/* Ícone Google SVG */}
-    <span className="google-icon" aria-label="Google Translate">
-    
-    </span>
-  </div>
+  <LanguageSelector onSelectLanguage={(langCode) => {
+    // Aqui você pode adicionar a lógica para mudar o idioma da sua aplicação
+    // Por exemplo, usando um contexto ou um estado global para gerenciar o idioma
+    console.log(`Idioma selecionado: ${langCode}`);
+  }} />
 </div>
 
       {/* Hero Section */}
