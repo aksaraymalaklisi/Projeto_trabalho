@@ -1,47 +1,84 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Image from 'next/image';
+
+const languages = [
+  { code: 'en', name: 'English', flag: '/images/flags/us.svg' },
+  { code: 'es', name: 'Español', flag: '/images/flags/es.svg' },
+  { code: 'fr', name: 'Français', flag: '/images/flags/fr.svg' },
+  { code: 'de', name: 'Deutsch', flag: '/images/flags/de.svg' },
+  { code: 'it', name: 'Italiano', flag: '/images/flags/it.svg' },
+  { code: 'pt', name: 'Português', flag: '/images/flags/pt.svg' },
+];
 
 interface LanguageSelectorProps {
   onSelectLanguage: (langCode: string) => void;
 }
 
-const flagMap: { [key: string]: string } = {
-  pt: "/images/flags/br.png",
-  en: "/images/flags/us.png",
-  es: "/images/flags/es.png",
-  fr: "/images/flags/fr.png",
-  nl: "/images/flags/nl.png",
-  de: "/images/flags/de.png",
-  it: "/images/flags/it.png",
-};
-
-const languages = [
-  { code: 'pt', name: 'Português' },
-  { code: 'en', name: 'English' },
-  { code: 'es', name: 'Español' },
-  { code: 'fr', name: 'Français' },
-  { code: 'nl', name: 'Holandês' },
-  { code: 'de', name: 'Alemão' },
-  { code: 'it', name: 'Italiano' },
-];
-
 const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onSelectLanguage }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedLanguage, setSelectedLanguage] = useState(languages[0]); // Default to English
+
+  const handleSelect = (language: typeof languages[0]) => {
+    setSelectedLanguage(language);
+    onSelectLanguage(language.code);
+    setIsOpen(false);
+  };
+
   return (
     <div className="relative inline-block text-left">
-      <select
-        onChange={(e) => onSelectLanguage(e.target.value)}
-        className="block appearance-none w-full bg-white border border-gray-300 hover:border-gray-400 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
-        style={{ backgroundImage: 'none', paddingRight: '1rem' }} // Remove default arrow
-      >
-        <option value="">Selecione o idioma</option>
-        {languages.map((lang) => (
-          <option key={lang.code} value={lang.code}>
-            {lang.name}
-          </option>
-        ))}
-      </select>
-      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-        <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
+      <div>
+        <button
+          type="button"
+          className="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-100 focus:ring-indigo-500"
+          id="menu-button"
+          aria-expanded="true"
+          aria-haspopup="true"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <Image src={selectedLanguage.flag} alt={selectedLanguage.name} width={20} height={15} className="mr-2" />
+          {selectedLanguage.name}
+          <svg
+            className="-mr-1 ml-2 h-5 w-5"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              fillRule="evenodd"
+              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </button>
       </div>
+
+      {isOpen && (
+        <div
+          className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+          role="menu"
+          aria-orientation="vertical"
+          aria-labelledby="menu-button"
+          tabIndex={-1}
+        >
+          <div className="py-1" role="none">
+            {languages.map((language) => (
+              <a
+                key={language.code}
+                href="#"
+                className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100"
+                role="menuitem"
+                tabIndex={-1}
+                id={`menu-item-${language.code}`}
+                onClick={() => handleSelect(language)}
+              >
+                <Image src={language.flag} alt={language.name} width={20} height={15} className="inline-block mr-2" />
+                {language.name}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
