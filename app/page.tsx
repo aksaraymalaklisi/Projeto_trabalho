@@ -1,7 +1,6 @@
 "use client"
 
 import React from "react"
-import type React from "react"
 import { handleStripeCheckout } from "@/lib/handleStripePayment";
 import { useState, useEffect } from "react"
 import LanguageSelector from "@/components/LanguageSelector";
@@ -412,6 +411,138 @@ export default function Home() {
                   "{testimonials[currentTestimonial].text}"
                 </motion.p>
 
-                {/* Informações e
-(Content truncated due to size limit. Use line ranges to read in chunks)
+                {/* Informações do Cliente */}
+                <div className="flex flex-col items-center">
+                  <h3 className="text-xl font-bold text-cyan-400">{testimonials[currentTestimonial].name}</h3>
+                  <p className="text-gray-300">{testimonials[currentTestimonial].company}</p>
+                  <div className="flex items-center mt-2">
+                    {[...Array(testimonials[currentTestimonial].rating)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 text-yellow-400 fill-current" />
+                    ))}
+                  </div>
+                </div>
+              </Card>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+      </section>
 
+      {/* Packages Section */}
+      <section className="py-20 px-4">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-12">Nossos Pacotes</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {packages.map((pkg, index) => (
+              <motion.div
+                key={pkg.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Card className={`h-full bg-gradient-to-br ${pkg.color} border-white/20 backdrop-blur-sm`}>
+                  <CardHeader>
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <CardTitle className="text-2xl font-bold">{pkg.name}</CardTitle>
+                        <CardDescription className="text-white/80">{pkg.description}</CardDescription>
+                      </div>
+                      <span className="text-4xl">{pkg.icon}</span>
+                    </div>
+                    <div className="mt-4">
+                      <span className="text-3xl font-bold">{pkg.price}</span>
+                      <span className="text-lg line-through text-white/60 ml-2">{pkg.originalPrice}</span>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-3 mb-6">
+                      {pkg.features.map((feature, i) => (
+                        <li key={i} className="flex items-start">
+                          <CheckCircle className="w-5 h-5 text-green-400 mr-2 flex-shrink-0 mt-1" />
+                          <span>{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="space-y-3">
+                      <Button
+                        className="w-full bg-white text-black hover:bg-white/90"
+                        onClick={() => handleBuyNow(pkg)}
+                      >
+                        Comprar Agora
+                      </Button>
+                      <Button
+                        variant="outline"
+                        className="w-full border-white/20 text-white hover:bg-white/10"
+                        onClick={() => handleSocialContact('whatsapp', pkg.name, pkg.price)}
+                      >
+                        Falar no WhatsApp
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 px-4">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-12">Perguntas Frequentes</h2>
+          <div className="space-y-6">
+            {faqs.map((faq, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+                  <CardHeader>
+                    <CardTitle className="text-xl">{faq.question}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-300">{faq.answer}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 px-4 bg-black/20 backdrop-blur-sm">
+        <div className="max-w-7xl mx-auto text-center">
+          <p className="text-gray-400">© 2024 UP DESIGNER. Todos os direitos reservados.</p>
+          <div className="flex justify-center gap-4 mt-4">
+            <Button
+              variant="ghost"
+              className="text-white hover:bg-white/10"
+              onClick={() => handleSocialContact('whatsapp')}
+            >
+              <MessageCircle className="w-5 h-5 mr-2" />
+              WhatsApp
+            </Button>
+            <Button
+              variant="ghost"
+              className="text-white hover:bg-white/10"
+              onClick={() => handleSocialContact('instagram')}
+            >
+              <Instagram className="w-5 h-5 mr-2" />
+              Instagram
+            </Button>
+            <Button
+              variant="ghost"
+              className="text-white hover:bg-white/10"
+              onClick={() => handleSocialContact('facebook')}
+            >
+              <Facebook className="w-5 h-5 mr-2" />
+              Facebook
+            </Button>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
