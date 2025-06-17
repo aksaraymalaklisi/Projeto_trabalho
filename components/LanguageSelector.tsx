@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
+import { useTranslation } from '../contexts/TranslationContext';
 
 const languages = [
   { code: 'en', name: 'English', flag: '/images/flags/us.png' },
@@ -8,20 +9,24 @@ const languages = [
   { code: 'de', name: 'Deutsch', flag: '/images/flags/de.png' },
   { code: 'it', name: 'Italiano', flag: '/images/flags/it.png' },
   { code: 'pt', name: 'Português', flag: '/images/flags/br.png' },
-  { code: 'nl', name: 'Holandês', flag: '/images/flags/nl.png' },
+  { code: 'nl', name: 'Nederlands', flag: '/images/flags/nl.png' },
 ];
 
 interface LanguageSelectorProps {
-  onSelectLanguage: (langCode: string) => void;
+  onSelectLanguage?: (langCode: string) => void;
 }
 
 const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onSelectLanguage }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState(languages[0]); // Default to English
+  const { currentLanguage, setLanguage } = useTranslation();
+  
+  const selectedLanguage = languages.find(lang => lang.code === currentLanguage) || languages[5]; // Default to Portuguese
 
   const handleSelect = (language: typeof languages[0]) => {
-    setSelectedLanguage(language);
-    onSelectLanguage(language.code);
+    setLanguage(language.code);
+    if (onSelectLanguage) {
+      onSelectLanguage(language.code);
+    }
     setIsOpen(false);
   };
 
@@ -56,7 +61,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onSelectLanguage })
 
       {isOpen && (
         <div
-          className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+          className="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none z-50"
           role="menu"
           aria-orientation="vertical"
           aria-labelledby="menu-button"
@@ -64,10 +69,9 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onSelectLanguage })
         >
           <div className="py-1" role="none">
             {languages.map((language) => (
-              <a
+              <button
                 key={language.code}
-                href="#"
-                className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100"
+                className="text-gray-700 block px-4 py-2 text-sm hover:bg-gray-100 w-full text-left"
                 role="menuitem"
                 tabIndex={-1}
                 id={`menu-item-${language.code}`}
@@ -75,7 +79,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onSelectLanguage })
               >
                 <Image src={language.flag} alt={language.name} width={20} height={15} className="inline-block mr-2" />
                 {language.name}
-              </a>
+              </button>
             ))}
           </div>
         </div>

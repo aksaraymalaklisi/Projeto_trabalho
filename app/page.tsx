@@ -8,6 +8,7 @@ import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { useTranslation } from "../contexts/TranslationContext"
 import {
   Star,
   Users,
@@ -214,6 +215,7 @@ const CheckoutPage = ({ package: pkg, onBack }: { package: any; onBack: () => vo
 };
 
 export default function Home() {
+  const { t } = useTranslation();
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [showCheckout, setShowCheckout] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState<any>(null);
@@ -316,18 +318,19 @@ export default function Home() {
 
           {/* Main Headline */}
           <motion.h1 variants={fadeInUp} className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            Invista em qualidade e estratégia. Transforme sua identidade visual com um{" "}
-            <span className="bg-gradient-to-r from-orange-500 to-red-500 bg-clip-text text-transparent">
-              designer profissional
-            </span>{" "}
-            especializado em criação de logotipos que realmente entregam resultados.
+            {t('hero.title')}
           </motion.h1>
+
+          {/* Subtitle */}
+          <motion.p variants={fadeInUp} className="text-xl text-gray-300 mb-8">
+            {t('hero.subtitle')}
+          </motion.p>
 
           {/* CTA Badges */}
           <motion.div variants={fadeInUp} className="flex justify-center gap-4 mb-12 flex-wrap">
             <Badge className="bg-yellow-500/20 text-yellow-400 border-yellow-500/30 px-4 py-2">
               <Zap className="w-4 h-4 mr-2" />
-              Entrega Rápida
+              {t('features.feature1.title')}
             </Badge>
             <Badge className="bg-purple-500/20 text-purple-400 border-purple-500/30 px-4 py-2">
               <Clock className="w-4 h-4 mr-2" />
@@ -341,7 +344,7 @@ export default function Home() {
 
           {/* Social Proof Intro */}
           <motion.p variants={fadeInUp} className="text-xl text-cyan-400 mb-12">
-            VEJA O QUE NOSSOS CLIENTES DIZEM:
+            {t('testimonials.title').toUpperCase()}:
           </motion.p>
         </motion.div>
       </section>

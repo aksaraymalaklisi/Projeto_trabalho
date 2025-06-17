@@ -1,0 +1,117 @@
+{
+  "hero": {
+    "title": "Trasforma la Tua Presenza Digitale con l'IA",
+    "subtitle": "Creazione di loghi personalizzati, siti web e strategie di marketing digitale con intelligenza artificiale",
+    "cta": "Inizia Ora"
+  },
+  "packages": {
+    "title": "I Nostri Pacchetti",
+    "subtitle": "Scegli il pacchetto perfetto per le tue esigenze",
+    "iaStart": {
+      "name": "IA START",
+      "description": "Perfetto per iniziare il tuo viaggio digitale",
+      "features": [
+        "Logo personalizzato con IA",
+        "3 variazioni di design",
+        "File ad alta risoluzione",
+        "Supporto per 30 giorni"
+      ]
+    },
+    "iaPro": {
+      "name": "IA PRO",
+      "description": "Per aziende che vogliono distinguersi",
+      "features": [
+        "Logo + identità visiva completa",
+        "Sito web responsive",
+        "5 variazioni di design",
+        "SEO di base incluso",
+        "Supporto per 60 giorni"
+      ]
+    },
+    "iaEnterprise": {
+      "name": "IA ENTERPRISE",
+      "description": "Soluzione completa per grandi aziende",
+      "features": [
+        "Identità visiva completa",
+        "Sito web + e-commerce",
+        "Strategia di marketing digitale",
+        "Analisi della concorrenza",
+        "Supporto prioritario per 90 giorni"
+      ]
+    },
+    "selectPackage": "Seleziona Pacchetto"
+  },
+  "testimonials": {
+    "title": "Cosa Dicono i Nostri Clienti",
+    "subtitle": "Storie reali di trasformazione digitale",
+    "testimonial1": {
+      "text": "L'IA ha rivoluzionato il nostro brand! In sole 48 ore avevamo un logo incredibile e un sito web professionale.",
+      "author": "Maria Silva",
+      "role": "CEO, TechStart"
+    },
+    "testimonial2": {
+      "text": "Qualità eccezionale e prezzo giusto. Lo raccomando a qualsiasi azienda che vuole distinguersi.",
+      "author": "João Santos",
+      "role": "Fondatore, InovaLab"
+    },
+    "testimonial3": {
+      "text": "Il supporto è fantastico e i risultati hanno superato le nostre aspettative. Investimento che vale la pena!",
+      "author": "Ana Costa",
+      "role": "Direttrice Marketing, CreativeHub"
+    }
+  },
+  "features": {
+    "title": "Perché Scegliere la Nostra IA?",
+    "subtitle": "Tecnologia all'avanguardia per risultati eccezionali",
+    "feature1": {
+      "title": "Velocità Incomparabile",
+      "description": "Consegna entro 48 ore"
+    },
+    "feature2": {
+      "title": "Qualità Premium",
+      "description": "Design professionali e unici"
+    },
+    "feature3": {
+      "title": "Supporto Dedicato",
+      "description": "Team specializzato sempre disponibile"
+    },
+    "feature4": {
+      "title": "Prezzo Giusto",
+      "description": "Miglior rapporto qualità-prezzo del mercato"
+    }
+  },
+  "faq": {
+    "title": "Domande Frequenti",
+    "subtitle": "Risolvi i tuoi dubbi sui nostri servizi",
+    "question1": {
+      "question": "Quanto tempo ci vuole per creare un logo?",
+      "answer": "Il nostro processo di creazione logo con IA richiede tra 24 e 48 ore. Riceverai 3 opzioni iniziali e potrai richiedere modifiche."
+    },
+    "question2": {
+      "question": "Posso apportare modifiche al design?",
+      "answer": "Sì! Includiamo fino a 3 round di revisioni in tutti i nostri pacchetti. Vogliamo garantire che tu sia soddisfatto al 100%."
+    },
+    "question3": {
+      "question": "Che formati di file ricevo?",
+      "answer": "Riceverai il tuo logo in PNG, JPG, SVG e PDF, tutti ad alta risoluzione, pronti per uso digitale e stampa."
+    },
+    "question4": {
+      "question": "C'è una garanzia di soddisfazione?",
+      "answer": "Sì! Offriamo una garanzia di 30 giorni. Se non sei soddisfatto, rimborsiamo il 100% del tuo investimento."
+    }
+  },
+  "cta": {
+    "title": "Pronto a Trasformare il Tuo Brand?",
+    "subtitle": "Unisciti a oltre 1000 aziende che hanno già trasformato la loro presenza digitale",
+    "button": "Inizia Ora"
+  },
+  "footer": {
+    "description": "Trasformare idee in realtà digitale con il potere dell'intelligenza artificiale.",
+    "quickLinks": "Link Rapidi",
+    "services": "Servizi",
+    "contact": "Contatto",
+    "followUs": "Seguici",
+    "allRightsReserved": "Tutti i diritti riservati."
+  }
+}
+

@@ -1,0 +1,117 @@
+{
+  "hero": {
+    "title": "Transformeer Uw Digitale Aanwezigheid met AI",
+    "subtitle": "Aangepaste logo-creatie, websites en digitale marketingstrategieën met kunstmatige intelligentie",
+    "cta": "Begin Nu"
+  },
+  "packages": {
+    "title": "Onze Pakketten",
+    "subtitle": "Kies het perfecte pakket voor uw behoeften",
+    "iaStart": {
+      "name": "AI START",
+      "description": "Perfect om uw digitale reis te beginnen",
+      "features": [
+        "Aangepast AI-logo",
+        "3 ontwerpvariaties",
+        "Hoge resolutie bestanden",
+        "30 dagen ondersteuning"
+      ]
+    },
+    "iaPro": {
+      "name": "AI PRO",
+      "description": "Voor bedrijven die willen opvallen",
+      "features": [
+        "Logo + complete visuele identiteit",
+        "Responsieve website",
+        "5 ontwerpvariaties",
+        "Basis SEO inbegrepen",
+        "60 dagen ondersteuning"
+      ]
+    },
+    "iaEnterprise": {
+      "name": "AI ENTERPRISE",
+      "description": "Complete oplossing voor grote bedrijven",
+      "features": [
+        "Complete visuele identiteit",
+        "Website + e-commerce",
+        "Digitale marketingstrategie",
+        "Concurrentieanalyse",
+        "Prioriteitsondersteuning voor 90 dagen"
+      ]
+    },
+    "selectPackage": "Pakket Selecteren"
+  },
+  "testimonials": {
+    "title": "Wat Onze Klanten Zeggen",
+    "subtitle": "Echte verhalen van digitale transformatie",
+    "testimonial1": {
+      "text": "AI heeft ons merk gerevolutioneerd! In slechts 48 uur hadden we een geweldig logo en een professionele website.",
+      "author": "Maria Silva",
+      "role": "CEO, TechStart"
+    },
+    "testimonial2": {
+      "text": "Uitzonderlijke kwaliteit en eerlijke prijs. Ik beveel het aan voor elk bedrijf dat wil opvallen.",
+      "author": "João Santos",
+      "role": "Oprichter, InovaLab"
+    },
+    "testimonial3": {
+      "text": "De ondersteuning is fantastisch en de resultaten overtroffen onze verwachtingen. Investering die de moeite waard is!",
+      "author": "Ana Costa",
+      "role": "Marketing Directeur, CreativeHub"
+    }
+  },
+  "features": {
+    "title": "Waarom Onze AI Kiezen?",
+    "subtitle": "Geavanceerde technologie voor uitzonderlijke resultaten",
+    "feature1": {
+      "title": "Ongeëvenaarde Snelheid",
+      "description": "Levering binnen 48 uur"
+    },
+    "feature2": {
+      "title": "Premium Kwaliteit",
+      "description": "Professionele en unieke ontwerpen"
+    },
+    "feature3": {
+      "title": "Toegewijde Ondersteuning",
+      "description": "Gespecialiseerd team altijd beschikbaar"
+    },
+    "feature4": {
+      "title": "Eerlijke Prijs",
+      "description": "Beste prijs-kwaliteitverhouding op de markt"
+    }
+  },
+  "faq": {
+    "title": "Veelgestelde Vragen",
+    "subtitle": "Los uw twijfels op over onze diensten",
+    "question1": {
+      "question": "Hoe lang duurt het om een logo te maken?",
+      "answer": "Ons AI logo-creatieproces duurt tussen 24 en 48 uur. U ontvangt 3 initiële opties en kunt aanpassingen aanvragen."
+    },
+    "question2": {
+      "question": "Kan ik wijzigingen aanbrengen in het ontwerp?",
+      "answer": "Ja! We bieden tot 3 revisierondes in al onze pakketten. We willen ervoor zorgen dat u 100% tevreden bent."
+    },
+    "question3": {
+      "question": "Welke bestandsformaten ontvang ik?",
+      "answer": "U ontvangt uw logo in PNG, JPG, SVG en PDF, allemaal in hoge resolutie, klaar voor digitaal gebruik en drukwerk."
+    },
+    "question4": {
+      "question": "Is er een tevredenheidsgarantie?",
+      "answer": "Ja! We bieden een 30-dagen garantie. Als u niet tevreden bent, geven we 100% van uw investering terug."
+    }
+  },
+  "cta": {
+    "title": "Klaar om Uw Merk te Transformeren?",
+    "subtitle": "Sluit u aan bij meer dan 1000 bedrijven die hun digitale aanwezigheid al hebben getransformeerd",
+    "button": "Begin Nu"
+  },
+  "footer": {
+    "description": "Ideeën transformeren naar digitale realiteit met de kracht van kunstmatige intelligentie.",
+    "quickLinks": "Snelle Links",
+    "services": "Diensten",
+    "contact": "Contact",
+    "followUs": "Volg Ons",
+    "allRightsReserved": "Alle rechten voorbehouden."
+  }
+}
+

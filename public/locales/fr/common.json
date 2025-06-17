@@ -1,0 +1,117 @@
+{
+  "hero": {
+    "title": "Transformez Votre Présence Numérique avec l'IA",
+    "subtitle": "Création de logos personnalisés, sites web et stratégies de marketing numérique avec intelligence artificielle",
+    "cta": "Commencer Maintenant"
+  },
+  "packages": {
+    "title": "Nos Forfaits",
+    "subtitle": "Choisissez le forfait parfait pour vos besoins",
+    "iaStart": {
+      "name": "IA START",
+      "description": "Parfait pour commencer votre parcours numérique",
+      "features": [
+        "Logo personnalisé avec IA",
+        "3 variations de design",
+        "Fichiers haute résolution",
+        "Support pendant 30 jours"
+      ]
+    },
+    "iaPro": {
+      "name": "IA PRO",
+      "description": "Pour les entreprises qui veulent se démarquer",
+      "features": [
+        "Logo + identité visuelle complète",
+        "Site web responsive",
+        "5 variations de design",
+        "SEO de base inclus",
+        "Support pendant 60 jours"
+      ]
+    },
+    "iaEnterprise": {
+      "name": "IA ENTERPRISE",
+      "description": "Solution complète pour les grandes entreprises",
+      "features": [
+        "Identité visuelle complète",
+        "Site web + e-commerce",
+        "Stratégie de marketing numérique",
+        "Analyse de la concurrence",
+        "Support prioritaire pendant 90 jours"
+      ]
+    },
+    "selectPackage": "Sélectionner le Forfait"
+  },
+  "testimonials": {
+    "title": "Ce Que Disent Nos Clients",
+    "subtitle": "Histoires réelles de transformation numérique",
+    "testimonial1": {
+      "text": "L'IA a révolutionné notre marque ! En seulement 48 heures, nous avions un logo incroyable et un site web professionnel.",
+      "author": "Maria Silva",
+      "role": "PDG, TechStart"
+    },
+    "testimonial2": {
+      "text": "Qualité exceptionnelle et prix équitable. Je le recommande à toute entreprise qui veut se démarquer.",
+      "author": "João Santos",
+      "role": "Fondateur, InovaLab"
+    },
+    "testimonial3": {
+      "text": "Le support est fantastique et les résultats ont dépassé nos attentes. Investissement qui en vaut la peine !",
+      "author": "Ana Costa",
+      "role": "Directrice Marketing, CreativeHub"
+    }
+  },
+  "features": {
+    "title": "Pourquoi Choisir Notre IA ?",
+    "subtitle": "Technologie de pointe pour des résultats exceptionnels",
+    "feature1": {
+      "title": "Rapidité Incomparable",
+      "description": "Livraison en 48 heures maximum"
+    },
+    "feature2": {
+      "title": "Qualité Premium",
+      "description": "Designs professionnels et uniques"
+    },
+    "feature3": {
+      "title": "Support Dédié",
+      "description": "Équipe spécialisée toujours disponible"
+    },
+    "feature4": {
+      "title": "Prix Équitable",
+      "description": "Meilleur rapport qualité-prix du marché"
+    }
+  },
+  "faq": {
+    "title": "Questions Fréquemment Posées",
+    "subtitle": "Clarifiez vos doutes sur nos services",
+    "question1": {
+      "question": "Combien de temps faut-il pour créer un logo ?",
+      "answer": "Notre processus de création de logo avec IA prend entre 24 et 48 heures. Vous recevrez 3 options initiales et pourrez demander des ajustements."
+    },
+    "question2": {
+      "question": "Puis-je apporter des modifications au design ?",
+      "answer": "Oui ! Nous incluons jusqu'à 3 tours de révisions dans tous nos forfaits. Nous voulons garantir que vous soyez 100% satisfait."
+    },
+    "question3": {
+      "question": "Quels formats de fichiers est-ce que je reçois ?",
+      "answer": "Vous recevrez votre logo en PNG, JPG, SVG et PDF, tous en haute résolution, prêts pour l'usage numérique et l'impression."
+    },
+    "question4": {
+      "question": "Y a-t-il une garantie de satisfaction ?",
+      "answer": "Oui ! Nous offrons une garantie de 30 jours. Si vous n'êtes pas satisfait, nous remboursons 100% de votre investissement."
+    }
+  },
+  "cta": {
+    "title": "Prêt à Transformer Votre Marque ?",
+    "subtitle": "Rejoignez plus de 1000 entreprises qui ont déjà transformé leur présence numérique",
+    "button": "Commencer Maintenant"
+  },
+  "footer": {
+    "description": "Transformer les idées en réalité numérique avec le pouvoir de l'intelligence artificielle.",
+    "quickLinks": "Liens Rapides",
+    "services": "Services",
+    "contact": "Contact",
+    "followUs": "Suivez-nous",
+    "allRightsReserved": "Tous droits réservés."
+  }
+}
+

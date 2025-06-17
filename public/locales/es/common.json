@@ -1,0 +1,117 @@
+{
+  "hero": {
+    "title": "Transforma Tu Presencia Digital con IA",
+    "subtitle": "Creación de logotipos personalizados, sitios web y estrategias de marketing digital con inteligencia artificial",
+    "cta": "Comenzar Ahora"
+  },
+  "packages": {
+    "title": "Nuestros Paquetes",
+    "subtitle": "Elige el paquete perfecto para tus necesidades",
+    "iaStart": {
+      "name": "IA START",
+      "description": "Perfecto para comenzar tu viaje digital",
+      "features": [
+        "Logo personalizado con IA",
+        "3 variaciones de diseño",
+        "Archivos en alta resolución",
+        "Soporte por 30 días"
+      ]
+    },
+    "iaPro": {
+      "name": "IA PRO",
+      "description": "Para empresas que quieren destacar",
+      "features": [
+        "Logo + identidad visual completa",
+        "Sitio web responsivo",
+        "5 variaciones de diseño",
+        "SEO básico incluido",
+        "Soporte por 60 días"
+      ]
+    },
+    "iaEnterprise": {
+      "name": "IA ENTERPRISE",
+      "description": "Solución completa para grandes empresas",
+      "features": [
+        "Identidad visual completa",
+        "Sitio web + e-commerce",
+        "Estrategia de marketing digital",
+        "Análisis de competencia",
+        "Soporte prioritario por 90 días"
+      ]
+    },
+    "selectPackage": "Seleccionar Paquete"
+  },
+  "testimonials": {
+    "title": "Lo Que Dicen Nuestros Clientes",
+    "subtitle": "Historias reales de transformación digital",
+    "testimonial1": {
+      "text": "¡La IA revolucionó nuestra marca! En solo 48 horas teníamos un logo increíble y un sitio web profesional.",
+      "author": "Maria Silva",
+      "role": "CEO, TechStart"
+    },
+    "testimonial2": {
+      "text": "Calidad excepcional y precio justo. Lo recomiendo a cualquier empresa que quiera destacar.",
+      "author": "João Santos",
+      "role": "Fundador, InovaLab"
+    },
+    "testimonial3": {
+      "text": "El soporte es fantástico y los resultados superaron nuestras expectativas. ¡Inversión que vale la pena!",
+      "author": "Ana Costa",
+      "role": "Directora de Marketing, CreativeHub"
+    }
+  },
+  "features": {
+    "title": "¿Por Qué Elegir Nuestra IA?",
+    "subtitle": "Tecnología de vanguardia para resultados excepcionales",
+    "feature1": {
+      "title": "Rapidez Incomparable",
+      "description": "Entrega en hasta 48 horas"
+    },
+    "feature2": {
+      "title": "Calidad Premium",
+      "description": "Diseños profesionales y únicos"
+    },
+    "feature3": {
+      "title": "Soporte Dedicado",
+      "description": "Equipo especializado siempre disponible"
+    },
+    "feature4": {
+      "title": "Precio Justo",
+      "description": "Mejor costo-beneficio del mercado"
+    }
+  },
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "subtitle": "Resuelve tus dudas sobre nuestros servicios",
+    "question1": {
+      "question": "¿Cuánto tiempo toma crear un logo?",
+      "answer": "Nuestro proceso de creación de logo con IA toma entre 24 a 48 horas. Recibirás 3 opciones iniciales y podrás solicitar ajustes."
+    },
+    "question2": {
+      "question": "¿Puedo hacer cambios en el diseño?",
+      "answer": "¡Sí! Incluimos hasta 3 rondas de revisiones en todos nuestros paquetes. Queremos garantizar que quedes 100% satisfecho."
+    },
+    "question3": {
+      "question": "¿Qué formatos de archivo recibo?",
+      "answer": "Recibirás tu logo en PNG, JPG, SVG y PDF, todos en alta resolución, listos para uso digital e impresión."
+    },
+    "question4": {
+      "question": "¿Hay garantía de satisfacción?",
+      "answer": "¡Sí! Ofrecemos garantía de 30 días. Si no quedas satisfecho, devolvemos el 100% de tu inversión."
+    }
+  },
+  "cta": {
+    "title": "¿Listo para Transformar Tu Marca?",
+    "subtitle": "Únete a más de 1000 empresas que ya han transformado su presencia digital",
+    "button": "Comenzar Ahora"
+  },
+  "footer": {
+    "description": "Transformando ideas en realidad digital con el poder de la inteligencia artificial.",
+    "quickLinks": "Enlaces Rápidos",
+    "services": "Servicios",
+    "contact": "Contacto",
+    "followUs": "Síguenos",
+    "allRightsReserved": "Todos los derechos reservados."
+  }
+}
+
