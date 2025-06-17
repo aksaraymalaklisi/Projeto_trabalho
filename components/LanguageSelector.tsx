@@ -2,12 +2,13 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 
 const languages = [
-  { code: 'en', name: 'English', flag: '/images/flags/us.svg' },
-  { code: 'es', name: 'Español', flag: '/images/flags/es.svg' },
-  { code: 'fr', name: 'Français', flag: '/images/flags/fr.svg' },
-  { code: 'de', name: 'Deutsch', flag: '/images/flags/de.svg' },
-  { code: 'it', name: 'Italiano', flag: '/images/flags/it.svg' },
-  { code: 'pt', name: 'Português', flag: '/images/flags/pt.svg' },
+  { code: 'en', name: 'English', flag: '/images/flags/us.png' },
+  { code: 'es', name: 'Español', flag: '/images/flags/es.png' },
+  { code: 'fr', name: 'Français', flag: '/images/flags/fr.png' },
+  { code: 'de', name: 'Deutsch', flag: '/images/flags/de.png' },
+  { code: 'it', name: 'Italiano', flag: '/images/flags/it.png' },
+  { code: 'pt', name: 'Português', flag: '/images/flags/br.png' },
+  { code: 'nl', name: 'Holandês', flag: '/images/flags/nl.png' },
 ];
 
 interface LanguageSelectorProps {
