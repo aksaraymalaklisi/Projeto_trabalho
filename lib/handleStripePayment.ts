@@ -1,52 +1,23 @@
 import { loadStripe } from '@stripe/stripe-js';
 
-const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
-
-export const handleStripeCheckout = async (pkgPrice: number) => {
+export const handleStripeCheckout = async (stripeUrl: string) => {
   try {
-    const stripe = await stripePromise;
+    // Validação da URL
+    if (!stripeUrl || typeof stripeUrl !== 'string') {
+      throw new Error('URL do Stripe não fornecida ou inválida');
+    }
+
+    // Verifica se é uma URL válida do Stripe
+    if (!stripeUrl.startsWith('https://buy.stripe.com/')) {
+      throw new Error('URL do Stripe inválida');
+    }
+
+    // Redireciona diretamente para a URL do Stripe
+    window.open(stripeUrl, '_blank');
     
-    if (!stripe) {
-      throw new Error('Falha ao carregar o Stripe');
-    }
-
-    const response = await fetch('/api/create-checkout-session', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        amount: Math.round(pkgPrice * 100), // Garante que é inteiro (centavos)
-        currency: 'eur',
-        mode: 'payment', // Adicionado explicitamente
-      }),
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(errorData.message || 'Erro na API');
-    }
-
-    const { sessionId, error } = await response.json();
-
-    if (error) {
-      throw new Error(error);
-    }
-
-    if (!sessionId) {
-      throw new Error('ID da sessão de checkout não recebido');
-    }
-
-    // Redireciona para o checkout do Stripe
-    const { error: redirectError } = await stripe.redirectToCheckout({ sessionId });
-    
-    if (redirectError) {
-      throw new Error(redirectError.message);
-    }
-
   } catch (error) {
-    console.error('Erro no processo de checkout:', error);
-    // Adicione aqui sua lógica de tratamento de erros (ex: mostrar alerta para o usuário)
-    throw error; // Rejeita a promise para tratamento externo
+    console.error('Erro ao abrir checkout do Stripe:', error);
+    alert('Erro ao abrir página de pagamento. Tente novamente.');
+    throw error;
   }
 };
