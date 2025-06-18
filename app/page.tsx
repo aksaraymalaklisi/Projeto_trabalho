@@ -185,7 +185,7 @@ const faqs = [
   },
 ]
 
-const CheckoutPage = ({ package: pkg, onBack }: { package: any; onBack: () => void }) => {
+const CheckoutPage = ({ package: pkg, onBack, handleSocialContact }: { package: any; onBack: () => void; handleSocialContact: (platform: string, packageName?: string, packagePrice?: string) => void }) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white flex items-center justify-center p-4">
       <Card className="w-full max-w-md bg-white/10 backdrop-blur-sm border-white/20 text-white">
@@ -208,6 +208,37 @@ const CheckoutPage = ({ package: pkg, onBack }: { package: any; onBack: () => vo
           >
             Voltar
           </Button>
+
+          {/* Seção de pagamento via redes sociais */}
+          <div className="mt-8 p-4 rounded-lg bg-white/10 border border-white/20 text-center">
+            <h3 className="text-lg font-bold mb-4 text-white">Ou pague através das redes sociais</h3>
+            <p className="text-sm text-gray-300 mb-4">Fale conosco diretamente e passe as informações por lá</p>
+            <div className="flex flex-col gap-3 mb-4">
+              <Button
+                className="w-full bg-green-500 hover:bg-green-600 text-white font-bold"
+                onClick={() => handleStripeCheckout(pkg.stripeUrl)}
+              >
+                Pague com Stripe ({pkg.price})
+              </Button>
+              <Button
+                className="w-full bg-pink-500 hover:bg-pink-600 text-white font-bold"
+                onClick={() => handleSocialContact('instagram', pkg.name, pkg.price)}
+              >
+                <Instagram className="w-5 h-5 mr-2" /> Pague através do Instagram {pkg.price}
+              </Button>
+              <Button
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold"
+                onClick={() => handleSocialContact('facebook', pkg.name, pkg.price)}
+              >
+                <Facebook className="w-5 h-5 mr-2" /> Pague através do Facebook {pkg.price}
+              </Button>
+            </div>
+            <div className="text-xs text-gray-400 flex flex-col items-center gap-1">
+              <span>💬 Atendimento personalizado</span>
+              <span>⚡ Resposta rápida garantida</span>
+              <span>📝 Passe suas preferências diretamente</span>
+            </div>
+          </div>
         </CardContent>
       </Card>
     </div>
@@ -265,7 +296,7 @@ export default function Home() {
   };
 
   if (showCheckout && selectedPackage) {
-    return <CheckoutPage package={selectedPackage} onBack={() => setShowCheckout(false)} />;
+    return <CheckoutPage package={selectedPackage} onBack={() => setShowCheckout(false)} handleSocialContact={handleSocialContact} />;
   }
 
   return (
