@@ -1,0 +1,117 @@
+{
+  "hero": {
+    "title": "Verwandeln Sie Ihre Digitale Präsenz mit KI",
+    "subtitle": "Individuelle Logo-Erstellung, Websites und digitale Marketing-Strategien mit künstlicher Intelligenz",
+    "cta": "Jetzt Starten"
+  },
+  "packages": {
+    "title": "Unsere Pakete",
+    "subtitle": "Wählen Sie das perfekte Paket für Ihre Bedürfnisse",
+    "iaStart": {
+      "name": "KI START",
+      "description": "Perfekt, um Ihre digitale Reise zu beginnen",
+      "features": [
+        "Individuelles KI-Logo",
+        "3 Design-Variationen",
+        "Hochauflösende Dateien",
+        "30 Tage Support"
+      ]
+    },
+    "iaPro": {
+      "name": "KI PRO",
+      "description": "Für Unternehmen, die sich abheben wollen",
+      "features": [
+        "Logo + komplette visuelle Identität",
+        "Responsive Website",
+        "5 Design-Variationen",
+        "Basis-SEO enthalten",
+        "60 Tage Support"
+      ]
+    },
+    "iaEnterprise": {
+      "name": "KI ENTERPRISE",
+      "description": "Komplettlösung für große Unternehmen",
+      "features": [
+        "Komplette visuelle Identität",
+        "Website + E-Commerce",
+        "Digitale Marketing-Strategie",
+        "Konkurrenzanalyse",
+        "Prioritäts-Support für 90 Tage"
+      ]
+    },
+    "selectPackage": "Paket Auswählen"
+  },
+  "testimonials": {
+    "title": "Was Unsere Kunden Sagen",
+    "subtitle": "Echte Geschichten digitaler Transformation",
+    "testimonial1": {
+      "text": "KI revolutionierte unsere Marke! In nur 48 Stunden hatten wir ein fantastisches Logo und eine professionelle Website.",
+      "author": "Maria Silva",
+      "role": "CEO, TechStart"
+    },
+    "testimonial2": {
+      "text": "Außergewöhnliche Qualität und fairer Preis. Ich empfehle es jedem Unternehmen, das sich abheben möchte.",
+      "author": "João Santos",
+      "role": "Gründer, InovaLab"
+    },
+    "testimonial3": {
+      "text": "Der Support ist fantastisch und die Ergebnisse übertrafen unsere Erwartungen. Eine lohnende Investition!",
+      "author": "Ana Costa",
+      "role": "Marketing-Direktorin, CreativeHub"
+    }
+  },
+  "features": {
+    "title": "Warum Unsere KI Wählen?",
+    "subtitle": "Spitzentechnologie für außergewöhnliche Ergebnisse",
+    "feature1": {
+      "title": "Unvergleichliche Geschwindigkeit",
+      "description": "Lieferung in bis zu 48 Stunden"
+    },
+    "feature2": {
+      "title": "Premium-Qualität",
+      "description": "Professionelle und einzigartige Designs"
+    },
+    "feature3": {
+      "title": "Engagierter Support",
+      "description": "Spezialisiertes Team immer verfügbar"
+    },
+    "feature4": {
+      "title": "Fairer Preis",
+      "description": "Bestes Preis-Leistungs-Verhältnis am Markt"
+    }
+  },
+  "faq": {
+    "title": "Häufig Gestellte Fragen",
+    "subtitle": "Klären Sie Ihre Zweifel über unsere Dienstleistungen",
+    "question1": {
+      "question": "Wie lange dauert es, ein Logo zu erstellen?",
+      "answer": "Unser KI-Logo-Erstellungsprozess dauert zwischen 24 und 48 Stunden. Sie erhalten 3 erste Optionen und können Anpassungen anfordern."
+    },
+    "question2": {
+      "question": "Kann ich Änderungen am Design vornehmen?",
+      "answer": "Ja! Wir bieten bis zu 3 Überarbeitungsrunden in allen unseren Paketen. Wir möchten sicherstellen, dass Sie 100% zufrieden sind."
+    },
+    "question3": {
+      "question": "Welche Dateiformate erhalte ich?",
+      "answer": "Sie erhalten Ihr Logo in PNG, JPG, SVG und PDF, alle in hoher Auflösung, bereit für digitale Nutzung und Druck."
+    },
+    "question4": {
+      "question": "Gibt es eine Zufriedenheitsgarantie?",
+      "answer": "Ja! Wir bieten eine 30-Tage-Garantie. Wenn Sie nicht zufrieden sind, erstatten wir 100% Ihrer Investition zurück."
+    }
+  },
+  "cta": {
+    "title": "Bereit, Ihre Marke zu Verwandeln?",
+    "subtitle": "Schließen Sie sich über 1000 Unternehmen an, die bereits ihre digitale Präsenz transformiert haben",
+    "button": "Jetzt Starten"
+  },
+  "footer": {
+    "description": "Ideen in digitale Realität verwandeln mit der Kraft der künstlichen Intelligenz.",
+    "quickLinks": "Schnelle Links",
+    "services": "Dienstleistungen",
+    "contact": "Kontakt",
+    "followUs": "Folgen Sie uns",
+    "allRightsReserved": "Alle Rechte vorbehalten."
+  }
+}
+

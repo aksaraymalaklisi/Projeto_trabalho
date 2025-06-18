@@ -1,0 +1,117 @@
+{
+  "hero": {
+    "title": "Transform Your Digital Presence with AI",
+    "subtitle": "Custom logo creation, websites and digital marketing strategies with artificial intelligence",
+    "cta": "Get Started"
+  },
+  "packages": {
+    "title": "Our Packages",
+    "subtitle": "Choose the perfect package for your needs",
+    "iaStart": {
+      "name": "AI START",
+      "description": "Perfect to start your digital journey",
+      "features": [
+        "Custom AI logo",
+        "3 design variations",
+        "High resolution files",
+        "30-day support"
+      ]
+    },
+    "iaPro": {
+      "name": "AI PRO",
+      "description": "For businesses that want to stand out",
+      "features": [
+        "Logo + complete visual identity",
+        "Responsive website",
+        "5 design variations",
+        "Basic SEO included",
+        "60-day support"
+      ]
+    },
+    "iaEnterprise": {
+      "name": "AI ENTERPRISE",
+      "description": "Complete solution for large companies",
+      "features": [
+        "Complete visual identity",
+        "Website + e-commerce",
+        "Digital marketing strategy",
+        "Competitor analysis",
+        "Priority support for 90 days"
+      ]
+    },
+    "selectPackage": "Select Package"
+  },
+  "testimonials": {
+    "title": "What Our Clients Say",
+    "subtitle": "Real stories of digital transformation",
+    "testimonial1": {
+      "text": "AI revolutionized our brand! In just 48 hours we had an amazing logo and a professional website.",
+      "author": "Maria Silva",
+      "role": "CEO, TechStart"
+    },
+    "testimonial2": {
+      "text": "Exceptional quality and fair price. I recommend it to any company that wants to stand out.",
+      "author": "João Santos",
+      "role": "Founder, InovaLab"
+    },
+    "testimonial3": {
+      "text": "The support is fantastic and the results exceeded our expectations. Investment that's worth it!",
+      "author": "Ana Costa",
+      "role": "Marketing Director, CreativeHub"
+    }
+  },
+  "features": {
+    "title": "Why Choose Our AI?",
+    "subtitle": "Cutting-edge technology for exceptional results",
+    "feature1": {
+      "title": "Unmatched Speed",
+      "description": "Delivery in up to 48 hours"
+    },
+    "feature2": {
+      "title": "Premium Quality",
+      "description": "Professional and unique designs"
+    },
+    "feature3": {
+      "title": "Dedicated Support",
+      "description": "Specialized team always available"
+    },
+    "feature4": {
+      "title": "Fair Price",
+      "description": "Best cost-benefit in the market"
+    }
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Clear your doubts about our services",
+    "question1": {
+      "question": "How long does it take to create a logo?",
+      "answer": "Our AI logo creation process takes between 24 to 48 hours. You'll receive 3 initial options and can request adjustments."
+    },
+    "question2": {
+      "question": "Can I make changes to the design?",
+      "answer": "Yes! We include up to 3 revision rounds in all our packages. We want to ensure you're 100% satisfied."
+    },
+    "question3": {
+      "question": "What file formats do I receive?",
+      "answer": "You'll receive your logo in PNG, JPG, SVG and PDF, all in high resolution, ready for digital use and printing."
+    },
+    "question4": {
+      "question": "Is there a satisfaction guarantee?",
+      "answer": "Yes! We offer a 30-day guarantee. If you're not satisfied, we'll refund 100% of your investment."
+    }
+  },
+  "cta": {
+    "title": "Ready to Transform Your Brand?",
+    "subtitle": "Join over 1000 companies that have already transformed their digital presence",
+    "button": "Start Now"
+  },
+  "footer": {
+    "description": "Transforming ideas into digital reality with the power of artificial intelligence.",
+    "quickLinks": "Quick Links",
+    "services": "Services",
+    "contact": "Contact",
+    "followUs": "Follow Us",
+    "allRightsReserved": "All rights reserved."
+  }
+}
+
