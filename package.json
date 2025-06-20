@@ -3,14 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_ENV=development next dev",
-    "dev:test": "NODE_ENV=development next dev",
-    "build": "NODE_ENV=production next build",
-    "start": "NODE_ENV=production next start",
-    "build:test": "NODE_ENV=development next build",
-    "api": "node api/index.js",
-    "dev:all": "concurrently \"npm run dev\" \"npm run api\""
-  },
+  "dev": "cross-env NODE_ENV=development next dev",
+  "dev:test": "cross-env NODE_ENV=development next dev",
+  "build": "cross-env NODE_ENV=production next build",
+  "start": "cross-env NODE_ENV=production next start",
+  "build:test": "cross-env NODE_ENV=development next build",
+  "api": "node api/index.js",
+  "dev:all": "concurrently \"pnpm dev\" \"pnpm api\""
+},
+
   "dependencies": {
     "@emotion/is-prop-valid": "latest",
     "@hookform/resolvers": "^3.9.1",
@@ -86,5 +87,4 @@
     "postcss": "^8.5",
     "tailwindcss": "^3.4.17",
     "typescript": "^5"
-  }
-}
+  }}
