@@ -29,6 +29,8 @@ import {
   Heart,
 } from "lucide-react"
 import { LogoGallery } from "@/components/logo-gallery"
+import PayPalButton from "@/components/PayPalButton";
+import { PayPalProvider } from "@/components/PayPalProvider";
 
 
 const fadeInUp = {
@@ -186,6 +188,9 @@ const faqs = [
 ]
 
 const CheckoutPage = ({ package: pkg, onBack, handleSocialContact }: { package: any; onBack: () => void; handleSocialContact: (platform: string, packageName?: string, packagePrice?: string) => void }) => {
+  const [paypalSuccess, setPaypalSuccess] = useState(false);
+  const [paypalError, setPaypalError] = useState<string | null>(null);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white flex items-center justify-center p-4">
       <Card className="w-full max-w-md bg-white/10 backdrop-blur-sm border-white/20 text-white">
@@ -202,6 +207,18 @@ const CheckoutPage = ({ package: pkg, onBack, handleSocialContact }: { package: 
           >
             Pagar com Stripe
           </Button>
+          {/* PayPal */}
+          <div className="my-4">
+            <PayPalProvider>
+              <PayPalButton
+                amount={pkg.price.replace(/[^\d,\.]/g, "").replace(",", ".")}
+                onSuccess={() => setPaypalSuccess(true)}
+                onError={(err) => setPaypalError(typeof err === 'string' ? err : 'Erro no pagamento PayPal')}
+              />
+            </PayPalProvider>
+            {paypalSuccess && <div className="text-green-400 mt-2">Pagamento PayPal realizado com sucesso!</div>}
+            {paypalError && <div className="text-red-400 mt-2">{paypalError}</div>}
+          </div>
           <Button
             className="w-full bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded"
             onClick={onBack}
