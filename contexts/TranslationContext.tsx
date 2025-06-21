@@ -12,7 +12,7 @@ const TranslationContext = createContext<TranslationContextType | undefined>(und
 
 const translations = {
   pt: {
-    'hero.title': 'Transforme Sua Presença Digital com IA',
+    'hero.title': 'Invista em qualidade e estratégia. Transforme sua identidade visual com um designer profissional especializado em criação de logotipos que realmente entregam resultados.',
     'hero.subtitle': 'Criação de logotipos, websites e estratégias de marketing digital personalizadas com inteligência artificial',
     'hero.cta': 'Comece Agora',
     'features.feature1.title': 'Rapidez Incomparável',
@@ -35,7 +35,7 @@ const translations = {
     'cta.button': 'Começar Agora'
   },
   en: {
-    'hero.title': 'Transform Your Digital Presence with AI',
+    'hero.title': 'Invest in quality and strategy. Transform your visual identity with a professional designer specialized in creating logos that truly deliver results.',
     'hero.subtitle': 'Custom logo creation, websites and digital marketing strategies with artificial intelligence',
     'hero.cta': 'Get Started',
     'features.feature1.title': 'Unmatched Speed',
@@ -58,7 +58,7 @@ const translations = {
     'cta.button': 'Start Now'
   },
   es: {
-    'hero.title': 'Transforma Tu Presencia Digital con IA',
+    'hero.title': 'Invierte en calidad y estrategia. Transforma tu identidad visual con un diseñador profesional especializado en la creación de logotipos que realmente entregan resultados.',
     'hero.subtitle': 'Creación de logotipos personalizados, sitios web y estrategias de marketing digital con inteligencia artificial',
     'hero.cta': 'Comenzar Ahora',
     'features.feature1.title': 'Rapidez Incomparable',
@@ -81,7 +81,7 @@ const translations = {
     'cta.button': 'Comenzar Ahora'
   },
   fr: {
-    'hero.title': 'Transformez Votre Présence Numérique avec l\'IA',
+    'hero.title': 'Investissez dans la qualité et la stratégie. Transformez votre identité visuelle avec un designer professionnel spécialisé dans la création de logos qui apportent vraiment des résultats.',
     'hero.subtitle': 'Création de logos personnalisés, sites web et stratégies de marketing numérique avec intelligence artificielle',
     'hero.cta': 'Commencer Maintenant',
     'features.feature1.title': 'Rapidité Incomparable',
@@ -104,7 +104,7 @@ const translations = {
     'cta.button': 'Commencer Maintenant'
   },
   de: {
-    'hero.title': 'Verwandeln Sie Ihre Digitale Präsenz mit KI',
+    'hero.title': 'Investieren Sie in Qualität und Strategie. Verwandeln Sie Ihre visuelle Identität mit einem professionellen Designer, der auf die Erstellung von Logos spezialisiert ist, die wirklich Ergebnisse liefern.',
     'hero.subtitle': 'Individuelle Logo-Erstellung, Websites und digitale Marketing-Strategien mit künstlicher Intelligenz',
     'hero.cta': 'Jetzt Starten',
     'features.feature1.title': 'Unvergleichliche Geschwindigkeit',
@@ -127,7 +127,7 @@ const translations = {
     'cta.button': 'Jetzt Starten'
   },
   it: {
-    'hero.title': 'Trasforma la Tua Presenza Digitale con l\'IA',
+    'hero.title': 'Investi in qualità e strategia. Trasforma la tua identità visiva con un designer professionista specializzato nella creazione di loghi che portano davvero risultati.',
     'hero.subtitle': 'Creazione di loghi personalizzati, siti web e strategie di marketing digitale con intelligenza artificiale',
     'hero.cta': 'Inizia Ora',
     'features.feature1.title': 'Velocità Incomparabile',
@@ -150,7 +150,7 @@ const translations = {
     'cta.button': 'Inizia Ora'
   },
   nl: {
-    'hero.title': 'Transformeer Uw Digitale Aanwezigheid met AI',
+    'hero.title': 'Investeer in kwaliteit en strategie. Transformeer uw visuele identiteit met een professionele ontwerper die gespecialiseerd is in het creëren van logo\'s die echt resultaat opleveren.',
     'hero.subtitle': 'Aangepaste logo-creatie, websites en digitale marketingstrategieën met kunstmatige intelligentie',
     'hero.cta': 'Begin Nu',
     'features.feature1.title': 'Ongeëvenaarde Snelheid',
