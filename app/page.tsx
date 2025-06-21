@@ -367,6 +367,7 @@ export default function Home() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [showCheckout, setShowCheckout] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState<any>(null);
+  const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -667,30 +668,136 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* FAQ Section */}
+      {/* Process Section */}
       <section className="py-20 px-4">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-12">Perguntas Frequentes</h2>
-          <div className="space-y-6">
-            {faqs.map((faq, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <Card className="bg-white/10 backdrop-blur-sm border-white/20">
-                  <CardHeader>
-                    <CardTitle className="text-xl">{faq.question}</CardTitle>
-                  </CardHeader>
-                        <CardContent>
-                          <p className="text-gray-300">{faq.answer}</p>
-                        </CardContent>
+        <motion.div
+          className="max-w-6xl mx-auto"
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+        >
+          <motion.div variants={fadeInUp} className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">
+              COMO <span className="text-orange-500">FUNCIONA</span>
+            </h2>
+            <p className="text-xl text-gray-300">Processo simples em 3 passos</p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Target,
+                title: "1. Escolha o Pacote",
+                desc: "Selecione o pacote que melhor atende suas necessidades",
+              },
+              {
+                icon: Palette,
+                title: "2. Preencha as Informações",
+                desc: "Conte-nos sobre sua empresa e preferências de design",
+              },
+              { icon: Rocket, title: "3. Receba seu Logo", desc: "Receba seu logo profissional em até 24 horas" },
+            ].map((step, index) => (
+              <motion.div key={index} variants={fadeInUp} className="text-center">
+                <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
+                  <step.icon className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="text-xl font-bold mb-4">{step.title}</h3>
+                <p className="text-gray-300">{step.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Guarantees Section */}
+      <section className="py-20 px-4">
+        <motion.div
+          className="max-w-6xl mx-auto"
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+        >
+          <motion.div variants={fadeInUp} className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">
+              NOSSAS <span className="text-orange-500">GARANTIAS</span>
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                icon: Shield,
+                title: "Satisfação Garantida",
+                desc: "100% do seu dinheiro de volta se não ficar satisfeito",
+              },
+              { icon: Zap, title: "Entrega Rápida", desc: "Receba seu logo em até 24 horas" },
+              { icon: Heart, title: "Suporte Personalizado", desc: "Atendimento dedicado durante todo o processo" },
+              {
+                icon: Award,
+                title: "Uso Ilimitado",
+                desc: "Logo pronto para qualquer aplicação: web, impressão, redes sociais",
+              },
+            ].map((guarantee, index) => (
+              <motion.div key={index} variants={fadeInUp} className="text-center">
+                <Card className="bg-white/10 backdrop-blur-sm border-white/20 p-6 h-full hover:bg-white/20 transition-all duration-300 hover:scale-105">
+                  <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
+                    <guarantee.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <h3 className="text-lg font-bold mb-2">{guarantee.title}</h3>
+                  <p className="text-sm text-gray-300">{guarantee.desc}</p>
                 </Card>
               </motion.div>
             ))}
           </div>
+        </motion.div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 px-4">
+        <motion.div
+          className="max-w-4xl mx-auto"
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true }}
+          variants={staggerContainer}
+        >
+          <motion.div variants={fadeInUp} className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">
+              PERGUNTAS <span className="text-orange-500">FREQUENTES</span>
+            </h2>
+          </motion.div>
+
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <motion.div key={index} variants={fadeInUp}>
+                <Card className="bg-white/10 backdrop-blur-sm border-white/20">
+                  <CardHeader className="cursor-pointer" onClick={() => setOpenFaq(openFaq === index ? null : index)}>
+                    <div className="flex items-center justify-between">
+                      <CardTitle className="text-lg">{faq.question}</CardTitle>
+                      {openFaq === index ? <ChevronUp /> : <ChevronDown />}
+                    </div>
+                  </CardHeader>
+                  <AnimatePresence>
+                    {openFaq === index && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: "auto", opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <CardContent>
+                          <p className="text-gray-300">{faq.answer}</p>
+                        </CardContent>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </Card>
+              </motion.div>
+            ))}
           </div>
+        </motion.div>
       </section>
 
       {/* Footer */}
