@@ -47,89 +47,63 @@ const staggerContainer = {
   },
 }
 
-const packages = [
-  {
-    name: "IA START",
-    price: "€34,99",
-    originalPrice: "€49,99",
-    description: "LOGO POR IA, JPG E PNG ALTA RESOLUÇÃO (MARCA D\'ÁGUA EM PNG)",
-    features: [
-      "Logo gerado por IA com personalização baseada nas suas preferências",
-      "Arquivo em JPG de alta resolução, ideal para redes sociais, apresentações e uso digital em geral",
-      "Arquivo em PNG com fundo transparente, pronto para aplicar em qualquer fundo ou arte",
-      "Marca d\'água em PNG, ideal para proteger sua criação ao divulgar ou enviar para aprovação",
-      "Entrega rápida, direto no seu e-mail ou WhatsApp",
-    ],
-    stripeUrl: "https://buy.stripe.com/fZu7sMg1NasV8Y11rZ9Zm00",
-    popular: false,
-    color: "from-blue-500 to-cyan-500",
-    icon: "🧠",
-    recommendation: "Indicado para quem precisa de um logo rápido, com boa qualidade, pronto para começar a divulgar.",
-  },
-  {
-    name: "DESIGN SMART",
-    price: "€49,99",
-    originalPrice: "€69,99",
-    description: "JPG+PNG+PDF (IMPRESSÕES, MARCA D\'ÁGUA, ADESIVO)",
-    features: [
-      "JPG e PNG de alta resolução",
-      "PDF profissional, ideal para impressão de cartões, etiquetas, banners e adesivos",
-      "Marca d\'água e versão para adesivo, com o logo centralizado e pronto para produção gráfica",
-    ],
-    stripeUrl: "https://buy.stripe.com/6oU14oaHtgRjfmp8Ur9Zm01",
-    popular: false,
-    color: "from-purple-500 to-pink-500",
-    icon: "🎨",
-    recommendation:
-      "Ótimo para quem quer começar a imprimir o logo em brindes, papelaria e divulgar em diversos canais.",
-  },
-  {
-    name: "PRO BRAND",
-    price: "€79,99",
-    originalPrice: "€97,99",
-    description:
-      "JPG+PNG+PDF (IMPRESSÕES, MARCA D\'ÁGUA, ADESIVO, DOCUMENTOS) + PALETA DE CORES E TIPOGRAFIA + IDENTIDADE VISUAL",
-    features: [
-      "JPG, PNG e PDF (impressão, adesivo, documentos)",
-      "Paleta de cores personalizada, com códigos exatos para manter sua marca sempre igual",
-      "Tipografia recomendada, combinando com seu logo (para usar em posts, textos e artes)",
-      "Identidade visual pronta, com cores, fonte e estilo coesos para aplicar no Instagram, embalagens e materiais promocionais",
-    ],
-    stripeUrl: "https://buy.stripe.com/28EaEYeXJgRjdeh6Mj9Zm02",
-    popular: true,
-    color: "from-orange-500 to-red-500",
-    icon: "🚀",
-    recommendation: "Ideal para marcas que querem consistência e impacto visual desde o início.",
-  },
-  {
-    name: "PREMIUM FULL",
-    price: "€109,99",
-    originalPrice: "€149,99",
-    description:
-      "JPG+PNG+PDF (IMPRESSÕES, MARCA D\'ÁGUA, ADESIVO, DOCUMENTOS) PSD ARQUIVO EDITÁVEL DO LOGO + IDENTIDADE VISUAL + MANUAL COMPLETO + TIPOGRAFIA + MOCKUPS",
-    features: [
-      "JPG, PNG e PDF (para impressão, adesivo, papelaria, documentos)",
-      "PSD editável do seu logotipo (arquivo original para edições no Photoshop)",
-      "Identidade visual completa, com cores, fontes e estilo definidos para uso consistente",
-      "Manual da marca completo, com orientações de aplicação, tamanho mínimo, área de respiro e uso correto",
-      "Tipografia profissional personalizada, para reforçar sua marca em postagens e materiais",
-      "Mockups aplicados, com o logo pronto em camiseta, fachada, cartão e outros modelos realistas",
-    ],
-    stripeUrl: "https://buy.stripe.com/00w28s02P6cFcad7Qn9Zm03",
-    popular: false,
-    color: "from-emerald-500 to-teal-500",
-    icon: "👑",
-    recommendation:
-      "Pacote feito para marcas que querem escalar, atrair público e apresentar uma imagem profissional impecável.",
-  },
-]
-
 export default function Home() {
   const { t } = useTranslation();
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [showCheckout, setShowCheckout] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState<any>(null);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
+
+  const packages = [
+    {
+      name: t('packages.iaStart.name'),
+      price: "€34,99",
+      originalPrice: "€49,99",
+      description: t('packages.iaStart.description'),
+      features: Array.isArray(t('packages.iaStart.features')) ? t('packages.iaStart.features') as string[] : [],
+      stripeUrl: "https://buy.stripe.com/fZu7sMg1NasV8Y11rZ9Zm00",
+      popular: false,
+      color: "from-blue-500 to-cyan-500",
+      icon: "🧠",
+      recommendation: t('packages.iaStart.recommendation'),
+    },
+    {
+      name: t('packages.designSmart.name'),
+      price: "€49,99",
+      originalPrice: "€69,99",
+      description: t('packages.designSmart.description'),
+      features: Array.isArray(t('packages.designSmart.features')) ? t('packages.designSmart.features') as string[] : [],
+      stripeUrl: "https://buy.stripe.com/6oU14oaHtgRjfmp8Ur9Zm01",
+      popular: false,
+      color: "from-purple-500 to-pink-500",
+      icon: "🎨",
+      recommendation: t('packages.designSmart.recommendation'),
+    },
+    {
+      name: t('packages.proBrand.name'),
+      price: "€79,99",
+      originalPrice: "€97,99",
+      description: t('packages.proBrand.description'),
+      features: Array.isArray(t('packages.proBrand.features')) ? t('packages.proBrand.features') as string[] : [],
+      stripeUrl: "https://buy.stripe.com/28EaEYeXJgRjdeh6Mj9Zm02",
+      popular: true,
+      color: "from-orange-500 to-red-500",
+      icon: "🚀",
+      recommendation: t('packages.proBrand.recommendation'),
+    },
+    {
+      name: t('packages.premiumFull.name'),
+      price: "€109,99",
+      originalPrice: "€149,99",
+      description: t('packages.premiumFull.description'),
+      features: Array.isArray(t('packages.premiumFull.features')) ? t('packages.premiumFull.features') as string[] : [],
+      stripeUrl: "https://buy.stripe.com/00w28s02P6cFcad7Qn9Zm03",
+      popular: false,
+      color: "from-emerald-500 to-teal-500",
+      icon: "👑",
+      recommendation: t('packages.premiumFull.recommendation'),
+    },
+  ]
 
   const testimonials = [
     {
@@ -489,7 +463,7 @@ export default function Home() {
 
           {/* Social Proof Intro */}
           <motion.p variants={fadeInUp} className="text-xl text-cyan-400 mb-12">
-            {t('testimonials.title').toUpperCase()}:
+            {(typeof t('testimonials.title') === 'string' ? t('testimonials.title') as string : Array.isArray(t('testimonials.title')) ? (t('testimonials.title') as string[])[0] : t('testimonials.title') as string).toUpperCase()}:
           </motion.p>
         </motion.div>
       </section>
@@ -512,8 +486,8 @@ export default function Home() {
                   {/* Avatar com animação */}
                   <motion.img
                     key={`avatar-${currentTestimonial}`}
-                    src={testimonials[currentTestimonial].avatar || "/placeholder.svg"}
-                    alt={testimonials[currentTestimonial].name}
+                    src={typeof testimonials[currentTestimonial].avatar === 'string' ? testimonials[currentTestimonial].avatar : "/placeholder.svg"}
+                    alt={typeof testimonials[currentTestimonial].name === 'string' ? testimonials[currentTestimonial].name : 'Avatar'}
                     className="w-24 h-24 rounded-full object-cover border-3 border-cyan-400 shadow-lg"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -614,7 +588,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {packages.map((pkg, index) => (
-              <motion.div key={pkg.name} variants={fadeInUp} className="relative">
+              <motion.div key={typeof pkg.name === 'string' ? pkg.name : `package-${index}`} variants={fadeInUp} className="relative">
                 <Card
                   className={`bg-white/10 backdrop-blur-sm border-white/20 p-6 h-full hover:bg-white/20 transition-all duration-300 hover:scale-105 ${pkg.popular ? "ring-2 ring-orange-500" : ""}`}
                 >

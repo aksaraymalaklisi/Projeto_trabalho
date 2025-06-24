@@ -5,7 +5,7 @@ import React, { createContext, useContext, useState, ReactNode } from 'react';
 interface TranslationContextType {
   currentLanguage: string;
   setLanguage: (lang: string) => void;
-  t: (key: string) => string;
+  t: (key: string) => string | string[];
 }
 
 const TranslationContext = createContext<TranslationContextType | undefined>(undefined);
@@ -99,7 +99,45 @@ const translations = {
     'checkout.payThroughInstagram': 'Pague através do Instagram',
     'checkout.payThroughFacebook': 'Pague através do Facebook',
     'checkout.paypalSuccess': 'Pagamento PayPal realizado com sucesso!',
-    'checkout.paypalError': 'Erro no pagamento PayPal'
+    'checkout.paypalError': 'Erro no pagamento PayPal',
+    'packages.iaStart.name': 'IA START',
+    'packages.iaStart.description': 'AI LOGO, JPG AND PNG HIGH RESOLUTION (WATERMARK IN PNG)',
+    'packages.iaStart.features': [
+      'AI-generated logo with customization based on your preferences',
+      'High-resolution JPG file, ideal for social media, presentations and general digital use',
+      'PNG file with transparent background, ready to apply on any background or art',
+      'Watermark in PNG, ideal to protect your creation when sharing or sending for approval',
+      'Fast delivery, directly to your email or WhatsApp'
+    ],
+    'packages.iaStart.recommendation': 'Recommended for those who need a quick logo, with good quality, ready to start promoting.',
+    'packages.designSmart.name': 'DESIGN SMART',
+    'packages.designSmart.description': 'JPG+PNG+PDF (PRINTS, WATERMARK, STICKER)',
+    'packages.designSmart.features': [
+      'JPG and PNG high resolution',
+      'Professional PDF, ideal for printing cards, labels, banners and stickers',
+      'Watermark and sticker version, with centered logo and ready for graphic production'
+    ],
+    'packages.designSmart.recommendation': 'Perfect for those who want to start printing the logo on promotional items, stationery and promoting on various channels.',
+    'packages.proBrand.name': 'PRO BRAND',
+    'packages.proBrand.description': 'JPG+PNG+PDF (PRINTS, WATERMARK, STICKER, DOCUMENTS) + COLOR PALETTE AND TYPOGRAPHY + VISUAL IDENTITY',
+    'packages.proBrand.features': [
+      'JPG, PNG and PDF (print, sticker, documents)',
+      'Custom color palette, with exact codes to keep your brand always the same',
+      'Recommended typography, matching your logo (to use in posts, texts and arts)',
+      'Ready visual identity, with cohesive colors, font and style to apply on Instagram, packaging and promotional materials'
+    ],
+    'packages.proBrand.recommendation': 'Ideal for brands that want consistency and visual impact from the start.',
+    'packages.premiumFull.name': 'PREMIUM FULL',
+    'packages.premiumFull.description': 'JPG+PNG+PDF (PRINTS, WATERMARK, STICKER, DOCUMENTS) PSD EDITABLE LOGO FILE + VISUAL IDENTITY + COMPLETE MANUAL + TYPOGRAPHY + MOCKUPS',
+    'packages.premiumFull.features': [
+      'JPG, PNG and PDF (for printing, sticker, stationery, documents)',
+      'Editable PSD of your logo (original file for Photoshop editing)',
+      'Complete visual identity, with defined colors, fonts and style for consistent use',
+      'Complete brand manual, with application guidelines, minimum size, breathing area and correct usage',
+      'Professional personalized typography, to reinforce your brand in posts and materials',
+      'Applied mockups, with logo ready on t-shirt, facade, card and other realistic models'
+    ],
+    'packages.premiumFull.recommendation': 'Package designed for brands that want to scale, attract audience and present an impeccable professional image.'
   },
   en: {
     'hero.title': 'Invest in quality and strategy. Transform your visual identity with a professional designer specialized in creating logos that truly deliver results.',
@@ -190,7 +228,45 @@ const translations = {
     'checkout.payThroughInstagram': 'Pay through Instagram',
     'checkout.payThroughFacebook': 'Pay through Facebook',
     'checkout.paypalSuccess': 'PayPal payment completed successfully!',
-    'checkout.paypalError': 'PayPal payment error'
+    'checkout.paypalError': 'PayPal payment error',
+    'packages.iaStart.name': 'IA START',
+    'packages.iaStart.description': 'AI LOGO, JPG AND PNG HIGH RESOLUTION (WATERMARK IN PNG)',
+    'packages.iaStart.features': [
+      'AI-generated logo with customization based on your preferences',
+      'High-resolution JPG file, ideal for social media, presentations and general digital use',
+      'PNG file with transparent background, ready to apply on any background or art',
+      'Watermark in PNG, ideal to protect your creation when sharing or sending for approval',
+      'Fast delivery, directly to your email or WhatsApp'
+    ],
+    'packages.iaStart.recommendation': 'Recommended for those who need a quick logo, with good quality, ready to start promoting.',
+    'packages.designSmart.name': 'DESIGN SMART',
+    'packages.designSmart.description': 'JPG+PNG+PDF (PRINTS, WATERMARK, STICKER)',
+    'packages.designSmart.features': [
+      'JPG and PNG high resolution',
+      'Professional PDF, ideal for printing cards, labels, banners and stickers',
+      'Watermark and sticker version, with centered logo and ready for graphic production'
+    ],
+    'packages.designSmart.recommendation': 'Perfect for those who want to start printing the logo on promotional items, stationery and promoting on various channels.',
+    'packages.proBrand.name': 'PRO BRAND',
+    'packages.proBrand.description': 'JPG+PNG+PDF (PRINTS, WATERMARK, STICKER, DOCUMENTS) + COLOR PALETTE AND TYPOGRAPHY + VISUAL IDENTITY',
+    'packages.proBrand.features': [
+      'JPG, PNG and PDF (print, sticker, documents)',
+      'Custom color palette, with exact codes to keep your brand always the same',
+      'Recommended typography, matching your logo (to use in posts, texts and arts)',
+      'Ready visual identity, with cohesive colors, font and style to apply on Instagram, packaging and promotional materials'
+    ],
+    'packages.proBrand.recommendation': 'Ideal for brands that want consistency and visual impact from the start.',
+    'packages.premiumFull.name': 'PREMIUM FULL',
+    'packages.premiumFull.description': 'JPG+PNG+PDF (PRINTS, WATERMARK, STICKER, DOCUMENTS) PSD EDITABLE LOGO FILE + VISUAL IDENTITY + COMPLETE MANUAL + TYPOGRAPHY + MOCKUPS',
+    'packages.premiumFull.features': [
+      'JPG, PNG and PDF (for printing, sticker, stationery, documents)',
+      'Editable PSD of your logo (original file for Photoshop editing)',
+      'Complete visual identity, with defined colors, fonts and style for consistent use',
+      'Complete brand manual, with application guidelines, minimum size, breathing area and correct usage',
+      'Professional personalized typography, to reinforce your brand in posts and materials',
+      'Applied mockups, with logo ready on t-shirt, facade, card and other realistic models'
+    ],
+    'packages.premiumFull.recommendation': 'Package designed for brands that want to scale, attract audience and present an impeccable professional image.'
   },
   es: {
     'hero.title': 'Invierte en calidad y estrategia. Transforma tu identidad visual con un diseñador profesional especializado en la creación de logotipos que realmente entregan resultados.',
@@ -281,41 +357,89 @@ const translations = {
     'checkout.payThroughInstagram': 'Paga a través de Instagram',
     'checkout.payThroughFacebook': 'Paga a través de Facebook',
     'checkout.paypalSuccess': '¡Pago PayPal realizado con éxito!',
-    'checkout.paypalError': 'Error en el pago PayPal'
+    'checkout.paypalError': 'Error en el pago PayPal',
+    'packages.iaStart.name': 'IA START',
+    'packages.iaStart.description': 'AI LOGO, JPG AND PNG HIGH RESOLUTION (WATERMARK IN PNG)',
+    'packages.iaStart.features': [
+      'AI-generated logo with customization based on your preferences',
+      'High-resolution JPG file, ideal for social media, presentations and general digital use',
+      'PNG file with transparent background, ready to apply on any background or art',
+      'Watermark in PNG, ideal to protect your creation when sharing or sending for approval',
+      'Fast delivery, directly to your email or WhatsApp'
+    ],
+    'packages.iaStart.recommendation': 'Recommended for those who need a quick logo, with good quality, ready to start promoting.',
+    'packages.designSmart.name': 'DESIGN SMART',
+    'packages.designSmart.description': 'JPG+PNG+PDF (PRINTS, WATERMARK, STICKER)',
+    'packages.designSmart.features': [
+      'JPG and PNG high resolution',
+      'Professional PDF, ideal for printing cards, labels, banners and stickers',
+      'Watermark and sticker version, with centered logo and ready for graphic production'
+    ],
+    'packages.designSmart.recommendation': 'Perfect for those who want to start printing the logo on promotional items, stationery and promoting on various channels.',
+    'packages.proBrand.name': 'PRO BRAND',
+    'packages.proBrand.description': 'JPG+PNG+PDF (PRINTS, WATERMARK, STICKER, DOCUMENTS) + COLOR PALETTE AND TYPOGRAPHY + VISUAL IDENTITY',
+    'packages.proBrand.features': [
+      'JPG, PNG and PDF (print, sticker, documents)',
+      'Custom color palette, with exact codes to keep your brand always the same',
+      'Recommended typography, matching your logo (to use in posts, texts and arts)',
+      'Ready visual identity, with cohesive colors, font and style to apply on Instagram, packaging and promotional materials'
+    ],
+    'packages.proBrand.recommendation': 'Ideal for brands that want consistency and visual impact from the start.',
+    'packages.premiumFull.name': 'PREMIUM FULL',
+    'packages.premiumFull.description': 'JPG+PNG+PDF (PRINTS, WATERMARK, STICKER, DOCUMENTS) PSD EDITABLE LOGO FILE + VISUAL IDENTITY + COMPLETE MANUAL + TYPOGRAPHY + MOCKUPS',
+    'packages.premiumFull.features': [
+      'JPG, PNG and PDF (for printing, sticker, stationery, documents)',
+      'Editable PSD of your logo (original file for Photoshop editing)',
+      'Complete visual identity, with defined colors, fonts and style for consistent use',
+      'Complete brand manual, with application guidelines, minimum size, breathing area and correct usage',
+      'Professional personalized typography, to reinforce your brand in posts and materials',
+      'Applied mockups, with logo ready on t-shirt, facade, card and other realistic models'
+    ],
+    'packages.premiumFull.recommendation': 'Package designed for brands that want to scale, attract audience and present an impeccable professional image.'
   },
   fr: {
-    'hero.title': 'Transformez Votre Présence Numérique avec l\'IA',
+    'hero.title': 'Investissez dans la qualité et la stratégie. Transformez votre identité visuelle avec un designer professionnel spécialisé dans la création de logos qui livrent vraiment des résultats.',
     'hero.subtitle': 'Création de logos personnalisés, sites web et stratégies de marketing numérique avec intelligence artificielle',
     'hero.cta': 'Commencer Maintenant',
-    'packages.title': 'Nos Forfaits',
-    'packages.subtitle': 'Choisissez le forfait parfait pour vos besoins',
+    'packages.title': 'NosForfaits',
     'packages.iaStart.name': 'IA START',
-    'packages.iaStart.description': 'Parfait pour commencer votre parcours numérique',
+    'packages.iaStart.description': 'LOGO PAR IA, JPG ET PNG HAUTE RÉSOLUTION (FILIGRANE EN PNG)',
     'packages.iaStart.features': [
-      'Logo personnalisé avec IA',
-      '3 variations de design',
-      'Fichiers haute résolution',
-      'Support pendant 30 jours'
+      'Logo généré par IA avec personnalisation basée sur vos préférences',
+      'Fichier JPG haute résolution, idéal pour les réseaux sociaux, présentations et usage numérique en général',
+      'Fichier PNG avec fond transparent, prêt à appliquer sur n\'importe quel fond ou art',
+      'Filigrane en PNG, idéal pour protéger votre création lors de la diffusion ou envoi pour approbation',
+      'Livraison rapide, directement par e-mail ou WhatsApp'
     ],
-    'packages.iaPro.name': 'IA PRO',
-    'packages.iaPro.description': 'Pour les entreprises qui veulent se démarquer',
-    'packages.iaPro.features': [
-      'Logo + identité visuelle complète',
-      'Site web responsive',
-      '5 variations de design',
-      'SEO de base inclus',
-      'Support pendant 60 jours'
+    'packages.iaStart.recommendation': 'Recommandé pour ceux qui ont besoin d\'un logo rapide, de bonne qualité, prêt à commencer à diffuser.',
+    'packages.designSmart.name': 'DESIGN SMART',
+    'packages.designSmart.description': 'JPG+PNG+PDF (IMPRESSIONS, FILIGRANE, ADHÉSIF)',
+    'packages.designSmart.features': [
+      'JPG et PNG haute résolution',
+      'PDF professionnel, idéal pour l\'impression de cartes, étiquettes, bannières et adhésifs',
+      'Filigrane et version pour adhésif, avec le logo centré et prêt pour la production graphique'
     ],
-    'packages.iaEnterprise.name': 'IA ENTERPRISE',
-    'packages.iaEnterprise.description': 'Solution complète pour les grandes entreprises',
-    'packages.iaEnterprise.features': [
-      'Identité visuelle complète',
-      'Site web + e-commerce',
-      'Stratégie de marketing numérique',
-      'Analyse de la concurrence',
-      'Support prioritaire pendant 90 jours'
+    'packages.designSmart.recommendation': 'Parfait pour ceux qui veulent commencer à imprimer le logo sur des goodies, papeterie et diffuser sur divers canaux.',
+    'packages.proBrand.name': 'PRO BRAND',
+    'packages.proBrand.description': 'JPG+PNG+PDF (IMPRESSIONS, FILIGRANE, ADHÉSIF, DOCUMENTS) + PALETTE DE COULEURS ET TYPOGRAPHIE + IDENTITÉ VISUELLE',
+    'packages.proBrand.features': [
+      'JPG, PNG et PDF (impression, adhésif, documents)',
+      'Palette de couleurs personnalisée, avec codes exacts pour maintenir votre marque toujours identique',
+      'Typographie recommandée, s\'harmonisant avec votre logo (pour utiliser dans les posts, textes et arts)',
+      'Identité visuelle prête, avec couleurs, police et style cohérents pour appliquer sur Instagram, emballages et matériaux promotionnels'
     ],
-    'packages.selectPackage': 'Sélectionner le Forfait',
+    'packages.proBrand.recommendation': 'Idéal pour les marques qui veulent cohérence et impact visuel dès le début.',
+    'packages.premiumFull.name': 'PREMIUM FULL',
+    'packages.premiumFull.description': 'JPG+PNG+PDF (IMPRESSIONS, FILIGRANE, ADHÉSIF, DOCUMENTS) PSD FICHIER ÉDITABLE DU LOGO + IDENTITÉ VISUELLE + MANUEL COMPLET + TYPOGRAPHIE + MOCKUPS',
+    'packages.premiumFull.features': [
+      'JPG, PNG et PDF (pour impression, adhésif, papeterie, documents)',
+      'PSD éditable de votre logotype (fichier original pour éditions dans Photoshop)',
+      'Identité visuelle complète, avec couleurs, polices et style définis pour usage cohérent',
+      'Manuel de la marque complet, avec orientations d\'application, taille minimale, zone de respiration et usage correct',
+      'Typographie professionnelle personnalisée, pour renforcer votre marque dans les publications et matériaux',
+      'Mockups appliqués, avec le logo prêt sur t-shirt, façade, carte et autres modèles réalistes'
+    ],
+    'packages.premiumFull.recommendation': 'Forfait conçu pour les marques qui veulent évoluer, attirer du public et présenter une image professionnelle impeccable.',
     'testimonials.title': 'Ce Que Disent Nos Clients',
     'testimonials.subtitle': 'Histoires réelles de transformation numérique',
     'testimonials.testimonial1.name': 'João Santos',
@@ -330,7 +454,6 @@ const translations = {
     'testimonials.testimonial4.name': 'Maria Silva',
     'testimonials.testimonial4.company': 'Florista Boutique',
     'testimonials.testimonial4.text': 'Service exceptionnel et résultat fantastique. Je recommande à tous !',
-    'packages.title': 'Nos Forfaits',
     'packages.subtitle': 'Choisissez le forfait parfait pour vos besoins',
     'faq.title': 'Questions Fréquemment Posées',
     'faq.subtitle': 'Clarifiez vos doutes sur nos services',
@@ -341,7 +464,7 @@ const translations = {
     'faq.question3.question': 'Quels formats de fichiers est-ce que je reçois ?',
     'faq.question3.answer': 'Vous recevrez votre logo en PNG, JPG, SVG et PDF, tous en haute résolution, prêts pour l\'usage numérique et l\'impression.',
     'faq.question4.question': 'Y a-t-il une garantie de satisfaction ?',
-    'faq.question4.answer': 'Oui ! Nous offrons une garantie de 30 jours. Si vous n\'êtes pas satisfait, nous remboursons 100% de votre investissement.',
+    'faq.question4.answer': 'Oui ! Nous offrons une garantie de satisfaction de 100%. Si vous n\'êtes pas complètement satisfait, nous remboursons votre argent en 7 jours.',
     'cta.title': 'Prêt à Transformer Votre Marque ?',
     'cta.subtitle': 'Rejoignez plus de 1000 entreprises qui ont déjà transformé leur présence numérique',
     'cta.button': 'Commencer Maintenant',
@@ -351,39 +474,39 @@ const translations = {
     'footer.contact': 'Contact',
     'footer.followUs': 'Suivez-nous',
     'footer.allRightsReserved': 'Tous droits réservés.',
-    'logos.delivered.title': 'LOGOS ENTREGUES COM SUCESSO',
-    'logos.delivered.subtitle': 'Mais de 2.500 logos criados e entregues com qualidade profissional',
-    'packages.choose.title': 'ESCOLHA SEU PACOTE',
-    'packages.choose.subtitle': 'Pacotes personalizados para cada necessidade e orçamento',
-    'packages.mostPopular': 'MAIS POPULAR',
-    'packages.selectPackage': 'SELECIONAR PACOTE',
-    'process.title': 'COMO FUNCIONA',
-    'process.subtitle': 'Processo simples e rápido em apenas 3 etapas',
+    'logos.delivered.title': 'LOGOS LIVRÉS AVEC SUCCÈS',
+    'logos.delivered.subtitle': 'Plus de 2.500 logos créés et livrés avec une qualité professionnelle',
+    'packages.choose.title': 'CHOISISSEZ VOTRE FORFAIT',
+    'packages.choose.subtitle': 'Forfaits personnalisés pour chaque besoin et budget',
+    'packages.mostPopular': 'LE PLUS POPULAIRE',
+    'packages.selectPackage': 'SÉLECTIONNER LE FORFAIT',
+    'process.title': 'COMMENT ÇA MARCHE',
+    'process.subtitle': 'Processus simple et rapide en seulement 3 étapes',
     'process.step1.title': '1. BRIEFING',
-    'process.step1.desc': 'Conte-nos sobre sua empresa, público-alvo e preferências de design',
-    'process.step2.title': '2. CRIAÇÃO',
-    'process.step2.desc': 'Nossa IA cria opções personalizadas baseadas no seu briefing',
-    'process.step3.title': '3. ENTREGA',
-    'process.step3.desc': 'Receba seus arquivos em alta resolução prontos para uso',
-    'guarantees.title': 'NOSSAS GARANTIAS',
-    'guarantees.guarantee1.title': '100% SATISFAÇÃO',
-    'guarantees.guarantee1.desc': 'Garantimos que você ficará satisfeito ou devolvemos seu dinheiro',
-    'guarantees.guarantee2.title': 'ENTREGA RÁPIDA',
-    'guarantees.guarantee2.desc': 'Receba seu logo em até 48 horas após aprovação',
-    'guarantees.guarantee3.title': 'SUPORTE 24/7',
-    'guarantees.guarantee3.desc': 'Nossa equipe está sempre disponível para ajudar',
-    'guarantees.guarantee4.title': 'REVISÕES ILIMITADAS',
-    'guarantees.guarantee4.desc': 'Fazemos quantas alterações forem necessárias até você ficar satisfeito',
-    'faq.question1': 'Quanto tempo leva para criar um logo?',
-    'faq.answer1': 'Nosso processo leva entre 24-48 horas. Você recebe 3 opções iniciais e pode solicitar ajustes.',
-    'faq.question2': 'Posso fazer alterações no design?',
-    'faq.answer2': 'Sim! Incluímos até 3 rodadas de revisões em todos os pacotes para garantir sua satisfação.',
-    'faq.question3': 'Que formatos de arquivo recebo?',
-    'faq.answer3': 'Você recebe JPG, PNG, PDF e SVG em alta resolução, prontos para uso digital e impressão.',
-    'faq.question4': 'Há garantia de satisfação?',
+    'process.step1.desc': 'Parlez-nous de votre entreprise, public cible et préférences de design',
+    'process.step2.title': '2. CRÉATION',
+    'process.step2.desc': 'Notre IA crée des options personnalisées basées sur votre briefing',
+    'process.step3.title': '3. LIVRAISON',
+    'process.step3.desc': 'Recevez vos fichiers en haute résolution prêts à utiliser',
+    'guarantees.title': 'NOS GARANTIES',
+    'guarantees.guarantee1.title': '100% SATISFACTION',
+    'guarantees.guarantee1.desc': 'Nous garantissons votre satisfaction ou nous remboursons votre argent',
+    'guarantees.guarantee2.title': 'LIVRAISON RAPIDE',
+    'guarantees.guarantee2.desc': 'Recevez votre logo en 48 heures maximum après approbation',
+    'guarantees.guarantee3.title': 'SUPPORT 24/7',
+    'guarantees.guarantee3.desc': 'Notre équipe est toujours disponible pour vous aider',
+    'guarantees.guarantee4.title': 'RÉVISIONS ILLIMITÉES',
+    'guarantees.guarantee4.desc': 'Nous faisons autant de modifications que nécessaire jusqu\'à votre satisfaction',
+    'faq.question1': 'Combien de temps faut-il pour créer un logo ?',
+    'faq.answer1': 'Notre processus prend entre 24-48 heures. Vous recevez 3 options initiales et pouvez demander des ajustements.',
+    'faq.question2': 'Puis-je faire des modifications au design ?',
+    'faq.answer2': 'Oui ! Nous incluons jusqu\'à 3 tours de révisions dans tous nos forfaits pour garantir votre satisfaction.',
+    'faq.question3': 'Quels formats de fichiers est-ce que je reçois ?',
+    'faq.answer3': 'Vous recevez JPG, PNG, PDF et SVG en haute résolution, prêts pour usage numérique et impression.',
+    'faq.question4': 'Y a-t-il une garantie de satisfaction ?',
     'faq.answer4': 'Oui ! Nous offrons une garantie de satisfaction de 100%. Si vous n\'êtes pas complètement satisfait, nous remboursons votre argent en 7 jours.',
     'faq.question5': 'Le logo sera-t-il exclusif ?',
-    'faq.answer5': 'Absolument! Chaque logo est créé exclusivement pour vous. Vous aurez tous les droits d\'auteur et nous garantissons qu\'il ne sera jamais utilisé par une autre entreprise.',
+    'faq.answer5': 'Absolument ! Chaque logo est créé exclusivement pour vous. Vous aurez tous les droits d\'auteur et nous garantissons qu\'il ne sera jamais utilisé par une autre entreprise.',
     'checkout.backToPackages': '← Retour aux Forfaits',
     'checkout.title': 'Finaliser l\'Achat',
     'checkout.subtitle': 'Choisissez votre méthode de paiement préférée',
@@ -408,7 +531,7 @@ const translations = {
     'checkout.paypalError': 'Erreur de paiement PayPal'
   },
   de: {
-    'hero.title': 'Verwandeln Sie Ihre Digitale Präsenz mit KI',
+    'hero.title': 'Investieren Sie in Qualität und Strategie. Transformieren Sie Ihre visuelle Identität mit einem professionellen Designer, der auf die Erstellung von Logos spezialisiert ist, die wirklich Ergebnisse liefern.',
     'hero.subtitle': 'Individuelle Logo-Erstellung, Websites und digitale Marketing-Strategien mit künstlicher Intelligenz',
     'hero.cta': 'Jetzt Starten',
     'packages.title': 'Unsere Pakete',
@@ -437,7 +560,7 @@ const translations = {
       'Website + E-Commerce',
       'Digitale Marketing-Strategie',
       'Konkurrenzanalyse',
-      'Prioritäts-Support für 90 Tage'
+      'Support prioritaire pendant 90 Tage'
     ],
     'packages.selectPackage': 'Paket Auswählen',
     'testimonials.title': 'Was Unsere Kunden Sagen',
@@ -485,21 +608,20 @@ const translations = {
     'packages.choose.title': 'WÄHLEN SIE IHR PAKET',
     'packages.choose.subtitle': 'Maßgeschneiderte Pakete für jeden Bedarf und jedes Budget',
     'packages.mostPopular': 'AM BELIEBTESTEN',
-    'packages.selectPackage': 'PAKET AUSWÄHLEN',
     'process.title': 'WIE ES FUNKTIONIERT',
-    'process.subtitle': 'Einfacher und schneller Prozess in nur 3 Schritten',
+    'process.subtitle': 'Einfacher und schneller Prozess in slechts 3 Schritten',
     'process.step1.title': '1. BRIEFING',
     'process.step1.desc': 'Erzählen Sie uns von Ihrem Unternehmen, Zielgruppe und Design-Präferenzen',
     'process.step2.title': '2. ERSTELLUNG',
     'process.step2.desc': 'Unsere KI erstellt maßgeschneiderte Optionen basierend auf Ihrem Briefing',
-    'process.step3.title': '3. LIEFERUNG',
+    'process.step3.title': '3. ENTREGA',
     'process.step3.desc': 'Erhalten Sie Ihre Dateien in hoher Auflösung, bereit für die Verwendung',
     'guarantees.title': 'UNSERE GARANTIEN',
-    'guarantees.guarantee1.title': '100% ZUFRIEDENHEIT',
-    'guarantees.guarantee1.desc': 'Wir garantieren Ihre Zufriedenheit oder erstatten Ihr Geld zurück',
-    'guarantees.guarantee2.title': 'SCHNELLE LIEFERUNG',
+    'guarantees.guarantee1.title': '100% SATISFAÇÃO',
+    'guarantees.guarantee1.desc': 'Garantimos que você ficará satisfeito ou devolvemos seu dinheiro',
+    'guarantees.guarantee2.title': 'SCHNELLE LIEFERING',
     'guarantees.guarantee2.desc': 'Erhalten Sie Ihr Logo innerhalb von 48 Stunden nach Genehmigung',
-    'guarantees.guarantee3.title': '24/7 SUPPORT',
+    'guarantees.guarantee3.title': 'SUPORTE 24/7',
     'guarantees.guarantee3.desc': 'Unser Team ist immer verfügbar, um zu helfen',
     'guarantees.guarantee4.title': 'UNBEGRENZTE REVISIONEN',
     'guarantees.guarantee4.desc': 'Wir machen zovele Änderungen wie nötig bis Sie zufrieden sind',
@@ -537,7 +659,7 @@ const translations = {
     'checkout.paypalError': 'PayPal-Zahlungsfehler'
   },
   it: {
-    'hero.title': 'Trasforma la Tua Presenza Digitale con l\'IA',
+    'hero.title': 'Investi in qualità e strategia. Trasforma la tua identità visiva con un designer professionista specializzato nella creazione di loghi che davvero producono risultati.',
     'hero.subtitle': 'Creazione di loghi personalizzati, siti web e strategie di marketing digitale con intelligenza artificiale',
     'hero.cta': 'Inizia Ora',
     'packages.title': 'I Nostri Pacchetti',
@@ -579,7 +701,7 @@ const translations = {
     'testimonials.testimonial2.role': 'Fondatore, InovaLab',
     'testimonials.testimonial3.text': 'Il supporto è fantastico e i risultati hanno superato le nostre aspettative. Investimento che vale la pena!',
     'testimonials.testimonial3.author': 'Ana Costa',
-    'testimonials.testimonial3.role': 'Direttrice Marketing, CreativeHub',
+    'testimonials.testimonial3.role': 'Marketing Direktorin, CreativeHub',
     'features.title': 'Perché Scegliere la Nostra IA?',
     'features.subtitle': 'Tecnologia all\'avanguardia per risultati eccezionali',
     'features.feature1.title': 'Velocità Incomparabile',
@@ -597,7 +719,7 @@ const translations = {
     'faq.question2.question': 'Posso apportare modifiche al design?',
     'faq.question2.answer': 'Sì! Includiamo fino a 3 round di revisioni in tutti i nostri pacchetti. Vogliamo garantire che tu sia soddisfatto al 100%.',
     'faq.question3.question': 'Che formati di file ricevo?',
-    'faq.question3.answer': 'Riceverai il tuo logo in PNG, JPG, SVG e PDF, tutti ad alta risoluzione, pronti per uso digitale e stampa.',
+    'faq.question3.answer': 'Você recebe JPG, PNG, PDF e SVG em alta resolução, prontos para uso digital e impressão.',
     'faq.question4.question': 'C\'è una garanzia di soddisfazione?',
     'faq.question4.answer': 'Sì! Offriamo una garanzia di 30 giorni. Se non sei soddisfatto, rimborsiamo il 100% del tuo investimento.',
     'cta.title': 'Pronto a Trasformare il Tuo Brand?',
@@ -614,7 +736,6 @@ const translations = {
     'packages.choose.title': 'SCEGLI IL TUO PACCHETTO',
     'packages.choose.subtitle': 'Pacchetti personalizzati per ogni esigenza e budget',
     'packages.mostPopular': 'PIÙ POPOLARE',
-    'packages.selectPackage': 'SELEZIONA PACCHETTO',
     'process.title': 'COME FUNZIONA',
     'process.subtitle': 'Processo semplice e veloce in soli 3 passaggi',
     'process.step1.title': '1. BRIEFING',
@@ -626,14 +747,14 @@ const translations = {
     'guarantees.title': 'LE NOSTRE GARANZIE',
     'guarantees.guarantee1.title': '100% SODDISFAZIONE',
     'guarantees.guarantee1.desc': 'Garantiamo la tua soddisfazione o rimborsiamo i tuoi soldi',
-    'guarantees.guarantee2.title': 'CONSEGNA RAPIDA',
+    'guarantees.guarantee2.title': 'CONSEGNA RÁPIDA',
     'guarantees.guarantee2.desc': 'Ricevi il tuo logo entro 48 ore dall\'approvazione',
     'guarantees.guarantee3.title': 'SUPPORTO 24/7',
-    'guarantees.guarantee3.desc': 'Un nostro team è sempre disponibile per aiutare',
+    'guarantees.guarantee3.desc': 'Un nostro team è sempre verfügbar, um zu helfen',
     'guarantees.guarantee4.title': 'REVISIONI ILLIMITATE',
     'guarantees.guarantee4.desc': 'Facciamo quante modifiche sono necessarie fino a quando non sei soddisfatto',
     'faq.question1': 'Quanto tempo ci vuole per creare un logo?',
-    'faq.answer1': 'Il nostro processo richiede tra 24-48 ore. Riceverai 3 opzioni iniziali e potrai richiedere modifiche.',
+    'faq.answer1': 'Il nostro processo richiede tra 24-48 ore. Você recebe 3 opzioni iniziali e pode solicitar ajustes.',
     'faq.question2': 'Posso apportare modifiche al design?',
     'faq.answer2': 'Sì! Includiamo fino a 3 round di revisioni in tutti i pacchetti per garantire la tua soddisfazione.',
     'faq.question3': 'Che formati di file ricevo?',
@@ -663,10 +784,10 @@ const translations = {
     'checkout.payThroughInstagram': 'Paga attraverso Instagram',
     'checkout.payThroughFacebook': 'Paga attraverso Facebook',
     'checkout.paypalSuccess': 'Pagamento PayPal completato con successo!',
-    'checkout.paypalError': 'Errore di pagamento PayPal'
+    'checkout.paypalError': 'PayPal-Zahlungsfehler'
   },
   nl: {
-    'hero.title': 'Transformeer Uw Digitale Aanwezigheid met AI',
+    'hero.title': 'Investeer in kwaliteit en strategie. Transformeer uw visuele identiteit met een professionele designer gespecialiseerd in het maken van logo\'s die echt resultaten leveren.',
     'hero.subtitle': 'Aangepaste logo-creatie, websites en digitale marketingstrategieën met kunstmatige intelligentie',
     'hero.cta': 'Begin Nu',
     'packages.title': 'Onze Pakketten',
@@ -722,7 +843,7 @@ const translations = {
     'faq.title': 'Veelgestelde Vragen',
     'faq.subtitle': 'Los uw twijfels op over onze diensten',
     'faq.question1.question': 'Hoe lang duurt het om een logo te maken?',
-    'faq.question1.answer': 'Ons AI logo-creatieproces duurt tussen 24 en 48 uur. U ontvangt 3 erste opties en kunt aanpassingen aanvragen.',
+    'faq.question1.answer': 'Ons AI logo-creatieproces duurt tussen 24 en 48 heures. U ontvangt 3 erste opties en kunt aanpassingen aanvragen.',
     'faq.question2.question': 'Kan ik wijzigingen aanbrengen in het ontwerp?',
     'faq.question2.answer': 'Ja! Wir bieden tot 3 revisierondes in al onze pakketten. We willen ervoor zorgen dat u 100% tevreden bent.',
     'faq.question3.question': 'Welke bestandsformaten ontvang ik?',
@@ -743,7 +864,6 @@ const translations = {
     'packages.choose.title': 'KIES UW PAKKET',
     'packages.choose.subtitle': 'Op maat gemaakte pakketten voor elke behoefte en budget',
     'packages.mostPopular': 'MEEST POPULAIR',
-    'packages.selectPackage': 'PAKKET SELECTEREN',
     'process.title': 'HOE HET WERKT',
     'process.subtitle': 'Eenvoudig en snel proces in slechts 3 stappen',
     'process.step1.title': '1. BRIEFING',
@@ -764,7 +884,7 @@ const translations = {
     'faq.question1': 'Wie lange dauert es, ein Logo zu erstellen?',
     'faq.answer1': 'Unser Prozess dauert zwischen 24-48 Stunden. Sie erhalten 3 erste opties und können Anpassungen anfordern.',
     'faq.question2': 'Kann ich wijzigingen aanbrengen in het ontwerp?',
-    'faq.answer2': 'Ja! Wir bieden tot 3 revisierondes in alle pakketten om uw tevredenheid te garanderen.',
+    'faq.answer2': 'Ja! Wir bieten tot 3 revisierondes in alle pakketten om uw tevredenheid te garanderen.',
     'faq.question3': 'Welke bestandsformaten ontvang ik?',
     'faq.answer3': 'Sie erhalten JPG, PNG, PDF und SVG in hoher Auflösung, bereit für digitale Nutzung und Druck.',
     'faq.question4': 'Gibt es eine Zufriedenheitsgarantie?',
@@ -803,7 +923,7 @@ export const TranslationProvider: React.FC<{ children: ReactNode }> = ({ childre
     setCurrentLanguage(lang);
   };
 
-  const t = (key: string): string => {
+  const t = (key: string): string | string[] => {
     const langTranslations = translations[currentLanguage as keyof typeof translations] || translations.pt;
     return langTranslations[key as keyof typeof langTranslations] || key;
   };
