@@ -124,244 +124,6 @@ const packages = [
   },
 ]
 
-const testimonials = [
-  {
-    name: "João Santos",
-    company: "Tech Solutions",
-    rating: 5,
-    text: "Melhor investimento que fiz para minha empresa. Logo profissional por um preço justo!",
-    avatar: "/images/clients/client-1.png",
-    logo: "/images/logos/mecanica-2d-new.png",
-  },
-  {
-    name: "Carlos Silva",
-    company: "Max Finança",
-    rating: 5,
-    text: "Logo incrível! Superou todas as minhas expectativas. Profissional muito talentoso!",
-    avatar: "/images/clients/client-2.png",
-    logo: "/images/logos/max-financa-2d-new.png",
-  },
-  {
-    name: "Pedro Oliveira",
-    company: "Corpo & Mente",
-    rating: 5,
-    text: "Processo rápido e fácil. Logo ficou exatamente como eu imaginava!",
-    avatar: "/images/clients/client-3.png",
-    logo: "/images/logos/corpo-mente-2d-new.png",
-  },
-  {
-    name: "Maria Silva",
-    company: "Florista Boutique",
-    rating: 5,
-    text: "Atendimento excepcional e resultado fantástico. Recomendo para todos!",
-    avatar: "/images/clients/client-4.png",
-    logo: "/images/logos/florista-2d-new.png",
-  },
-]
-
-const faqs = [
-  {
-    question: "Quanto tempo leva para receber meu logo?",
-    answer:
-      "Todos os nossos pacotes têm entrega rápida em até 24 horas. Após a confirmação do pagamento e recebimento das suas informações, você receberá seu logo completo diretamente no seu e-mail ou WhatsApp.",
-  },
-  {
-    question: "Posso solicitar revisões?",
-    answer:
-      "Sim! Cada pacote inclui revisões. Essencial: 2 revisões, Intermediário: 3 revisões, Premium e Completo: revisões ilimitadas até sua total satisfação.",
-  },
-  {
-    question: "Em que formatos recebo o logo?",
-    answer:
-      "Depende do pacote: Essencial (PNG, JPG), Intermediário (PNG, JPG, PDF), Premium (PNG, JPG, PDF, AI, EPS), Completo (todos os formatos possíveis incluindo SVG, PSD).",
-  },
-  {
-    question: "Há garantia de satisfação?",
-    answer:
-      "Sim! Oferecemos 100% de garantia de satisfação. Se não ficar completamente satisfeito, devolvemos seu dinheiro em até 7 dias.",
-  },
-  {
-    question: "O logo será exclusivo?",
-    answer:
-      "Absolutamente! Cada logo é criado exclusivamente para você. Você terá todos os direitos autorais e garantimos que nunca será usado por outra empresa.",
-  },
-]
-
-const CheckoutPage = ({ package: pkg, onBack, handleSocialContact }: { package: any; onBack: () => void; handleSocialContact: (platform: string, packageName?: string, packagePrice?: string) => void }) => {
-  const [paypalSuccess, setPaypalSuccess] = useState(false);
-  const [paypalError, setPaypalError] = useState<string | null>(null);
-  
-  // Calcular preço com desconto (€10 de desconto)
-  const originalPrice = parseFloat(pkg.price.replace(/[^\d,\.]/g, "").replace(",", "."));
-  const discountedPrice = originalPrice - 10;
-
-  const handleSubmit = () => {
-    handleStripeCheckout(pkg.stripeUrl);
-  };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white p-4">
-      <div className="max-w-7xl mx-auto py-8">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <Button
-            onClick={onBack}
-            className="mb-4 bg-gray-600 hover:bg-gray-700 text-white"
-          >
-            ← Voltar aos Pacotes
-          </Button>
-          <h1 className="text-4xl font-bold mb-2">Finalizar Compra</h1>
-          <p className="text-xl text-gray-300">Escolha sua forma de pagamento preferida</p>
-        </div>
-
-        {/* Layout de duas colunas */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Coluna Esquerda - Pacote Selecionado */}
-          <div className="space-y-6">
-            <Card className="bg-white/10 backdrop-blur-sm border-white/20 p-6">
-              <CardHeader className="text-center">
-                <div className="flex justify-center mb-4">
-                  <img src="/images/up-designer-logo.png" alt="UP DESIGNER" className="h-16" />
-                </div>
-                <CardTitle className="text-3xl font-bold">{pkg.name}</CardTitle>
-                <CardDescription className="text-lg text-gray-300 mt-2">{pkg.description}</CardDescription>
-                <div className="flex justify-center items-center gap-2 mt-6">
-                  <span className="text-xl text-gray-400 line-through">de {pkg.originalPrice}</span>
-                </div>
-                <div className="flex justify-center items-center gap-2 mt-1">
-                  <span className="text-3xl font-bold text-orange-500">por {pkg.price}</span>
-                </div>
-                <p className="text-sm text-gray-300 mt-2">Preço original com desconto já aplicado</p>
-              </CardHeader>
-              <CardContent className="text-center">
-                <div className="mb-4">
-                  <span className="text-4xl">{pkg.icon}</span>
-                </div>
-                <h4 className="font-semibold mb-4 text-lg">Incluído no pacote:</h4>
-                <ul className="space-y-3 max-w-md mx-auto">
-                  {pkg.features.map((feature: string, i: number) => (
-                    <li key={i} className="flex items-start gap-3 text-sm">
-                      <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                      <span className="text-left">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                {pkg.recommendation && (
-                  <div className="mt-6 p-3 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-lg border border-blue-500/30">
-                    <p className="text-sm text-blue-300 font-medium">{pkg.recommendation}</p>
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Coluna Direita - Pagamento e Formulário */}
-          <div className="space-y-6">
-            {/* Opção de Pagamento no Site */}
-            <Card className="bg-white border-green-500/30 p-6">
-              <CardHeader className="text-center">
-                <CardTitle className="text-xl text-green-600 flex items-center justify-center gap-2">
-                  <Sparkles className="w-6 h-6" />
-                  OFERTA ESPECIAL DO SITE
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="text-center">
-                  <p className="text-lg mb-2">Compre agora pelo site e receba</p>
-                  <div className="text-3xl font-bold text-green-600 mb-2">€10 GRÁTIS</div>
-                  <p className="text-sm text-gray-600 mb-4">Seu logo por apenas</p>
-                  <div className="text-4xl font-bold text-orange-500">
-                    €{discountedPrice.toFixed(2).replace(".", ",")}
-                  </div>
-                </div>
-                <div className="bg-white/10 p-4 rounded-lg">
-                  <h4 className="font-semibold mb-2 text-cyan-600 text-center">Como funciona:</h4>
-                  <ol className="text-sm space-y-1 text-gray-600 max-w-xs mx-auto">
-                    <li>1. Pagamento adiantado seguro</li>
-                    <li>2. Após confirmação, coleta de informações</li>
-                    <li>3. Criação do seu logo personalizado</li>
-                    <li>4. Entrega conforme pacote escolhido</li>
-                  </ol>
-                </div>
-                <div className="text-center">
-                  <Button
-                    onClick={handleSubmit}
-                    className="w-full md:w-3/4 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold py-4 text-lg rounded-lg transition-all duration-300 hover:scale-105"
-                  >
-                    💳 PAGAR AGORA €{discountedPrice.toFixed(2).replace(".", ",")}
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* PayPal */}
-            <Card className="bg-white/10 backdrop-blur-sm border-white/20 p-6">
-              <CardHeader className="text-center">
-                <CardTitle className="text-xl">Pagar com PayPal</CardTitle>
-                <CardDescription>Pagamento seguro e rápido</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="text-center">
-                  <p className="text-lg mb-2">Preço: <span className="font-bold text-xl">{pkg.price}</span></p>
-                  <div className="my-4">
-                    <PayPalProvider>
-                      <PayPalButton
-                        amount={pkg.price.replace(/[^\d,\.]/g, "").replace(",", ".")}
-                        onSuccess={() => setPaypalSuccess(true)}
-                        onError={(err) => setPaypalError(typeof err === 'string' ? err : 'Erro no pagamento PayPal')}
-                      />
-                    </PayPalProvider>
-                    {paypalSuccess && <div className="text-green-400 mt-2">Pagamento PayPal realizado com sucesso!</div>}
-                    {paypalError && <div className="text-red-400 mt-2">{paypalError}</div>}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Redes sociais */}
-            <Card className="bg-white/10 backdrop-blur-sm border-white/20 p-6">
-              <CardHeader className="text-center">
-                <CardTitle className="text-xl">Ou pague através das redes sociais</CardTitle>
-                <CardDescription>Fale conosco diretamente e passe as informações por lá</CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div className="flex flex-col items-center gap-4">
-                  <Button
-                    onClick={() => handleSocialContact("whatsapp", pkg.name, pkg.price)}
-                    className="w-full md:w-3/4 bg-green-600 hover:bg-green-700 text-white font-semibold py-4 rounded-lg flex items-center justify-center gap-3"
-                  >
-                    <MessageCircle className="w-5 h-5" />
-                    Pague através do WhatsApp €{pkg.price}
-                  </Button>
-                  <Button
-                    onClick={() => handleSocialContact("instagram", pkg.name, pkg.price)}
-                    className="w-full md:w-3/4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-4 rounded-lg flex items-center justify-center gap-3"
-                  >
-                    <Instagram className="w-5 h-5" />
-                    Pague através do Instagram €{pkg.price}
-                  </Button>
-                  <Button
-                    onClick={() => handleSocialContact("facebook", pkg.name, pkg.price)}
-                    className="w-full md:w-3/4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-lg flex items-center justify-center gap-3"
-                  >
-                    <Facebook className="w-5 h-5" />
-                    Pague através do Facebook €{pkg.price}
-                  </Button>
-                </div>
-                <div className="text-center text-sm text-gray-400 mt-4">
-                  <p>💬 Atendimento personalizado</p>
-                  <p>⚡ Resposta rápida garantida</p>
-                  <p>🎨 Passe suas preferências diretamente</p>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 export default function Home() {
   const { t } = useTranslation();
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
@@ -369,12 +131,70 @@ export default function Home() {
   const [selectedPackage, setSelectedPackage] = useState<any>(null);
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
+  const testimonials = [
+    {
+      name: t('testimonials.testimonial1.name'),
+      company: t('testimonials.testimonial1.company'),
+      rating: 5,
+      text: t('testimonials.testimonial1.text'),
+      avatar: "/images/clients/client-1.png",
+      logo: "/images/logos/mecanica-2d-new.png",
+    },
+    {
+      name: t('testimonials.testimonial2.name'),
+      company: t('testimonials.testimonial2.company'),
+      rating: 5,
+      text: t('testimonials.testimonial2.text'),
+      avatar: "/images/clients/client-2.png",
+      logo: "/images/logos/max-financa-2d-new.png",
+    },
+    {
+      name: t('testimonials.testimonial3.name'),
+      company: t('testimonials.testimonial3.company'),
+      rating: 5,
+      text: t('testimonials.testimonial3.text'),
+      avatar: "/images/clients/client-3.png",
+      logo: "/images/logos/corpo-mente-2d-new.png",
+    },
+    {
+      name: t('testimonials.testimonial4.name'),
+      company: t('testimonials.testimonial4.company'),
+      rating: 5,
+      text: t('testimonials.testimonial4.text'),
+      avatar: "/images/clients/client-4.png",
+      logo: "/images/logos/florista-2d-new.png",
+    },
+  ]
+
+  const faqs = [
+    {
+      question: t('faq.question1'),
+      answer: t('faq.answer1'),
+    },
+    {
+      question: t('faq.question2'),
+      answer: t('faq.answer2'),
+    },
+    {
+      question: t('faq.question3'),
+      answer: t('faq.answer3'),
+    },
+    {
+      question: t('faq.question4'),
+      answer: t('faq.answer4'),
+    },
+    {
+      question: t('faq.question5'),
+      answer: t('faq.answer5'),
+    },
+  ]
+
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentTestimonial((prev) => (prev + 1) % testimonials.length);
     }, 4000);
     return () => clearInterval(timer);
-  }, []);
+  }, [testimonials.length]);
 
   const handleBuyNow = (pkg: any) => {
     setSelectedPackage(pkg);
@@ -411,6 +231,187 @@ export default function Home() {
       facebook: `https://m.me/61571328744041?text=${encodeURIComponent(message)}`,
     };
     window.open(links[platform as keyof typeof links], "_blank");
+  };
+
+  const CheckoutPage = ({ package: pkg, onBack, handleSocialContact }: { package: any; onBack: () => void; handleSocialContact: (platform: string, packageName?: string, packagePrice?: string) => void }) => {
+    const [paypalSuccess, setPaypalSuccess] = useState(false);
+    const [paypalError, setPaypalError] = useState<string | null>(null);
+    
+    // Calcular preço com desconto (€10 de desconto)
+    const originalPrice = parseFloat(pkg.price.replace(/[^\d,\.]/g, "").replace(",", "."));
+    const discountedPrice = originalPrice - 10;
+
+    const handleSubmit = () => {
+      handleStripeCheckout(pkg.stripeUrl);
+    };
+
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white p-4">
+        <div className="max-w-7xl mx-auto py-8">
+          {/* Header */}
+          <div className="text-center mb-8">
+            <Button
+              onClick={onBack}
+              className="mb-4 bg-gray-600 hover:bg-gray-700 text-white"
+            >
+              ← Voltar aos Pacotes
+            </Button>
+            <h1 className="text-4xl font-bold mb-2">Finalizar Compra</h1>
+            <p className="text-xl text-gray-300">Escolha sua forma de pagamento preferida</p>
+          </div>
+
+          {/* Layout de duas colunas */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Coluna Esquerda - Pacote Selecionado */}
+            <div className="space-y-6">
+              <Card className="bg-white/10 backdrop-blur-sm border-white/20 p-6">
+                <CardHeader className="text-center">
+                  <div className="flex justify-center mb-4">
+                    <img src="/images/up-designer-logo.png" alt="UP DESIGNER" className="h-16" />
+                  </div>
+                  <CardTitle className="text-3xl font-bold">{pkg.name}</CardTitle>
+                  <CardDescription className="text-lg text-gray-300 mt-2">{pkg.description}</CardDescription>
+                  <div className="flex justify-center items-center gap-2 mt-6">
+                    <span className="text-xl text-gray-400 line-through">de {pkg.originalPrice}</span>
+                  </div>
+                  <div className="flex justify-center items-center gap-2 mt-1">
+                    <span className="text-3xl font-bold text-orange-500">por {pkg.price}</span>
+                  </div>
+                  <p className="text-sm text-gray-300 mt-2">Preço original com desconto já aplicado</p>
+                </CardHeader>
+                <CardContent className="text-center">
+                  <div className="mb-4">
+                    <span className="text-4xl">{pkg.icon}</span>
+                  </div>
+                  <h4 className="font-semibold mb-4 text-lg">Incluído no pacote:</h4>
+                  <ul className="space-y-3 max-w-md mx-auto">
+                    {pkg.features.map((feature: string, i: number) => (
+                      <li key={i} className="flex items-start gap-3 text-sm">
+                        <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                        <span className="text-left">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  {pkg.recommendation && (
+                    <div className="mt-6 p-3 bg-gradient-to-r from-blue-500/10 to-purple-500/10 rounded-lg border border-blue-500/30">
+                      <p className="text-sm text-blue-300 font-medium">{pkg.recommendation}</p>
+                    </div>
+                  )}
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Coluna Direita - Pagamento e Formulário */}
+            <div className="space-y-6">
+              {/* Opção de Pagamento no Site */}
+              <Card className="bg-white border-green-500/30 p-6">
+                <CardHeader className="text-center">
+                  <CardTitle className="text-xl text-green-600 flex items-center justify-center gap-2">
+                    <Sparkles className="w-6 h-6" />
+                    OFERTA ESPECIAL DO SITE
+                  </CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="text-center">
+                    <p className="text-lg mb-2">Compre agora pelo site e receba</p>
+                    <div className="text-3xl font-bold text-green-600 mb-2">€10 GRÁTIS</div>
+                    <p className="text-sm text-gray-600 mb-4">Seu logo por apenas</p>
+                    <div className="text-4xl font-bold text-orange-500">
+                      €{discountedPrice.toFixed(2).replace(".", ",")}
+                    </div>
+                  </div>
+                  <div className="bg-white/10 p-4 rounded-lg">
+                    <h4 className="font-semibold mb-2 text-cyan-600 text-center">Como funciona:</h4>
+                    <ol className="text-sm space-y-1 text-gray-600 max-w-xs mx-auto">
+                      <li>1. Pagamento adiantado seguro</li>
+                      <li>2. Após confirmação, coleta de informações</li>
+                      <li>3. Criação do seu logo personalizado</li>
+                      <li>4. Entrega conforme pacote escolhido</li>
+                    </ol>
+                  </div>
+                  <div className="text-center">
+                    <Button
+                      onClick={handleSubmit}
+                      className="w-full md:w-3/4 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold py-4 text-lg rounded-lg transition-all duration-300 hover:scale-105"
+                    >
+                      💳 PAGAR AGORA €{discountedPrice.toFixed(2).replace(".", ",")}
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* PayPal */}
+              <Card className="bg-white/10 backdrop-blur-sm border-white/20 p-6">
+                <CardHeader className="text-center">
+                  <CardTitle className="text-xl">Pagar com PayPal</CardTitle>
+                  <CardDescription>Pagamento seguro e rápido</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="text-center">
+                    <div className="flex justify-center items-center gap-2 mb-2">
+                      <span className="text-lg text-gray-400 line-through">de {pkg.originalPrice}</span>
+                    </div>
+                    <div className="flex justify-center items-center gap-2 mb-4">
+                      <span className="text-2xl font-bold text-orange-500">por €{discountedPrice.toFixed(2).replace(".", ",")}</span>
+                    </div>
+                    <p className="text-sm text-gray-300 mb-4">Preço com desconto de €10 aplicado</p>
+                    <div className="my-4">
+                      <PayPalProvider>
+                        <PayPalButton
+                          amount={discountedPrice.toString()}
+                          onSuccess={() => setPaypalSuccess(true)}
+                          onError={(err) => setPaypalError(typeof err === 'string' ? err : 'Erro no pagamento PayPal')}
+                        />
+                      </PayPalProvider>
+                      {paypalSuccess && <div className="text-green-400 mt-2">Pagamento PayPal realizado com sucesso!</div>}
+                      {paypalError && <div className="text-red-400 mt-2">{paypalError}</div>}
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Redes sociais */}
+              <Card className="bg-white/10 backdrop-blur-sm border-white/20 p-6">
+                <CardHeader className="text-center">
+                  <CardTitle className="text-xl">Ou pague através das redes sociais</CardTitle>
+                  <CardDescription>Fale conosco diretamente e passe as informações por lá</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div className="flex flex-col items-center gap-4">
+                    <Button
+                      onClick={() => handleSocialContact("whatsapp", pkg.name, pkg.price)}
+                      className="w-full md:w-3/4 bg-green-600 hover:bg-green-700 text-white font-semibold py-4 rounded-lg flex items-center justify-center gap-3"
+                    >
+                      <MessageCircle className="w-5 h-5" />
+                      Pague através do WhatsApp €{pkg.price}
+                    </Button>
+                    <Button
+                      onClick={() => handleSocialContact("instagram", pkg.name, pkg.price)}
+                      className="w-full md:w-3/4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold py-4 rounded-lg flex items-center justify-center gap-3"
+                    >
+                      <Instagram className="w-5 h-5" />
+                      Pague através do Instagram €{pkg.price}
+                    </Button>
+                    <Button
+                      onClick={() => handleSocialContact("facebook", pkg.name, pkg.price)}
+                      className="w-full md:w-3/4 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-lg flex items-center justify-center gap-3"
+                    >
+                      <Facebook className="w-5 h-5" />
+                      Pague através do Facebook €{pkg.price}
+                    </Button>
+                  </div>
+                  <div className="text-center text-sm text-gray-400 mt-4">
+                    <p>💬 Atendimento personalizado</p>
+                    <p>⚡ Resposta rápida garantida</p>
+                    <p>🎨 Passe suas preferências diretamente</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   };
 
   if (showCheckout && selectedPackage) {
@@ -483,11 +484,11 @@ export default function Home() {
             </Badge>
             <Badge className="bg-purple-500/20 text-purple-400 border-purple-500/30 px-4 py-2">
               <Clock className="w-4 h-4 mr-2" />
-              Início Imediato
+              {t('features.immediateStart')}
             </Badge>
             <Badge className="bg-green-500/20 text-green-400 border-green-500/30 px-4 py-2">
               <Shield className="w-4 h-4 mr-2" />
-              Garantia Total
+              {t('features.totalGuarantee')}
             </Badge>
           </motion.div>
 
@@ -589,10 +590,10 @@ export default function Home() {
           variants={staggerContainer}
         >
           <motion.h2 variants={fadeInUp} className="text-3xl md:text-4xl font-bold mb-6">
-            LOGOS ENTREGUES COM <span className="text-orange-500">SUCESSO</span>
+            {t('logos.delivered.title')}
           </motion.h2>
           <motion.p variants={fadeInUp} className="text-lg text-gray-300 mb-12">
-            Veja exemplos de logos profissionais em versões 2D e 3D
+            {t('logos.delivered.subtitle')}
           </motion.p>
           <motion.div variants={fadeInUp}>
             <LogoGallery />
@@ -611,9 +612,9 @@ export default function Home() {
         >
           <motion.div variants={fadeInUp} className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              ESCOLHA SEU <span className="text-orange-500">PACOTE</span>
+              {t('packages.choose.title')}
             </h2>
-            <p className="text-xl text-gray-300">Soluções profissionais para cada necessidade</p>
+            <p className="text-xl text-gray-300">{t('packages.choose.subtitle')}</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -624,7 +625,7 @@ export default function Home() {
                 >
                   {pkg.popular && (
                     <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                      <Badge className="bg-orange-500 text-white px-4 py-1">MAIS POPULAR</Badge>
+                      <Badge className="bg-orange-500 text-white px-4 py-1">{t('packages.mostPopular')}</Badge>
                     </div>
                   )}
 
@@ -657,7 +658,7 @@ export default function Home() {
                         onClick={() => handleBuyNow(pkg)}
                         className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-semibold py-3 rounded-lg transition-all duration-300 hover:scale-105"
                       >
-                        Selecionar pacote
+                        {t('packages.selectPackage')}
                       </Button>
                     </div>
                   </CardContent>
@@ -679,24 +680,28 @@ export default function Home() {
         >
           <motion.div variants={fadeInUp} className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              COMO <span className="text-orange-500">FUNCIONA</span>
+              {t('process.title')}
             </h2>
-            <p className="text-xl text-gray-300">Processo simples em 3 passos</p>
+            <p className="text-xl text-gray-300">{t('process.subtitle')}</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
                 icon: Target,
-                title: "1. Escolha o Pacote",
-                desc: "Selecione o pacote que melhor atende suas necessidades",
+                title: t('process.step1.title'),
+                desc: t('process.step1.desc'),
               },
               {
                 icon: Palette,
-                title: "2. Preencha as Informações",
-                desc: "Conte-nos sobre sua empresa e preferências de design",
+                title: t('process.step2.title'),
+                desc: t('process.step2.desc'),
               },
-              { icon: Rocket, title: "3. Receba seu Logo", desc: "Receba seu logo profissional em até 24 horas" },
+              { 
+                icon: Rocket, 
+                title: t('process.step3.title'), 
+                desc: t('process.step3.desc') 
+              },
             ].map((step, index) => (
               <motion.div key={index} variants={fadeInUp} className="text-center">
                 <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center">
@@ -721,7 +726,7 @@ export default function Home() {
         >
           <motion.div variants={fadeInUp} className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              NOSSAS <span className="text-orange-500">GARANTIAS</span>
+              {t('guarantees.title')}
             </h2>
           </motion.div>
 
@@ -729,15 +734,23 @@ export default function Home() {
             {[
               {
                 icon: Shield,
-                title: "Satisfação Garantida",
-                desc: "100% do seu dinheiro de volta se não ficar satisfeito",
+                title: t('guarantees.guarantee1.title'),
+                desc: t('guarantees.guarantee1.desc'),
               },
-              { icon: Zap, title: "Entrega Rápida", desc: "Receba seu logo em até 24 horas" },
-              { icon: Heart, title: "Suporte Personalizado", desc: "Atendimento dedicado durante todo o processo" },
+              { 
+                icon: Zap, 
+                title: t('guarantees.guarantee2.title'), 
+                desc: t('guarantees.guarantee2.desc') 
+              },
+              { 
+                icon: Heart, 
+                title: t('guarantees.guarantee3.title'), 
+                desc: t('guarantees.guarantee3.desc') 
+              },
               {
                 icon: Award,
-                title: "Uso Ilimitado",
-                desc: "Logo pronto para qualquer aplicação: web, impressão, redes sociais",
+                title: t('guarantees.guarantee4.title'),
+                desc: t('guarantees.guarantee4.desc'),
               },
             ].map((guarantee, index) => (
               <motion.div key={index} variants={fadeInUp} className="text-center">
@@ -765,7 +778,7 @@ export default function Home() {
         >
           <motion.div variants={fadeInUp} className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold mb-4">
-              PERGUNTAS <span className="text-orange-500">FREQUENTES</span>
+              {t('faq.title')}
             </h2>
           </motion.div>
 
