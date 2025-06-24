@@ -471,11 +471,6 @@ export default function Home() {
             {t('hero.title')}
           </motion.h1>
 
-          {/* Subtitle */}
-          <motion.p variants={fadeInUp} className="text-xl text-gray-300 mb-8">
-            {t('hero.subtitle')}
-          </motion.p>
-
           {/* CTA Badges */}
           <motion.div variants={fadeInUp} className="flex justify-center gap-4 mb-12 flex-wrap">
             <Badge className="bg-yellow-500/20 text-yellow-400 border-yellow-500/30 px-4 py-2">

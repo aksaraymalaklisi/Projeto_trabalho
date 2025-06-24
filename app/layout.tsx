@@ -4,8 +4,7 @@ import { TranslationProvider } from '../contexts/TranslationContext'
 import React from 'react'
 
 export const metadata: Metadata = {
-  title: 'IA Digital - Transforme Sua Presença Digital',
-  description: 'Criação de logotipos, websites e estratégias de marketing digital personalizadas com inteligência artificial',
+  title: 'Invista em qualidade e estratégia. Transforme sua identidade visual com um designer profissional especializado em criação de logotipos que realmente entregam resultados.',
   generator: 'v0.dev',
 }
 
