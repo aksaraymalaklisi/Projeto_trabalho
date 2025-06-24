@@ -30,7 +30,7 @@ import {
 } from "lucide-react"
 import { LogoGallery } from "@/components/logo-gallery"
 import PayPalButton from "@/components/PayPalButton";
-import { PayPalProvider } from "@/components/PayPalProvider";
+import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 
 
 const fadeInUp = {
@@ -209,13 +209,11 @@ const CheckoutPage = ({ package: pkg, onBack, handleSocialContact }: { package: 
           </Button>
           {/* PayPal */}
           <div className="my-4">
-            <PayPalProvider>
-              <PayPalButton
-                amount={pkg.price.replace(/[^\d,\.]/g, "").replace(",", ".")}
-                onSuccess={() => setPaypalSuccess(true)}
-                onError={(err) => setPaypalError(typeof err === 'string' ? err : 'Erro no pagamento PayPal')}
-              />
-            </PayPalProvider>
+            <PayPalButton
+              amount={pkg.price.replace(/[^\d,\.]/g, "").replace(",", ".")}
+              onSuccess={() => setPaypalSuccess(true)}
+              onError={(err) => setPaypalError(typeof err === 'string' ? err : 'Erro no pagamento PayPal')}
+            />
             {paypalSuccess && <div className="text-green-400 mt-2">Pagamento PayPal realizado com sucesso!</div>}
             {paypalError && <div className="text-red-400 mt-2">{paypalError}</div>}
           </div>
@@ -313,7 +311,16 @@ export default function Home() {
   };
 
   if (showCheckout && selectedPackage) {
-    return <CheckoutPage package={selectedPackage} onBack={() => setShowCheckout(false)} handleSocialContact={handleSocialContact} />;
+    return (
+      <PayPalScriptProvider
+        options={{
+          clientId: process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID || "YOUR_PAYPAL_CLIENT_ID",
+          currency: "EUR"
+        }}
+      >
+        <CheckoutPage package={selectedPackage} onBack={() => setShowCheckout(false)} handleSocialContact={handleSocialContact} />
+      </PayPalScriptProvider>
+    );
   }
 
   return (
