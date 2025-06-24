@@ -17,13 +17,14 @@ const PayPalButton: React.FC<PayPalButtonProps> = ({ amount, onSuccess, onError 
         style={{ layout: 'vertical' }}
         fundingSource="paypal"
         createOrder={(data, actions) => {
+          const formattedAmount = (Math.round(Number(amount) * 100) / 100).toFixed(2);
           return actions.order.create({
             intent: 'CAPTURE',
             purchase_units: [
               {
                 amount: {
                   currency_code: 'EUR',
-                  value: amount,
+                  value: formattedAmount,
                 },
               },
             ],
